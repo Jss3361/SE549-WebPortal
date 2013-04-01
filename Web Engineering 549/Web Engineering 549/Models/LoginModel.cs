@@ -7,5 +7,6 @@ namespace Web_Engineering_549.Models
 {
     public class LoginModel
     {
+
     }
 }
