@@ -9,14 +9,12 @@ namespace Web_Engineering_549.Controllers
 {
     public class AccountController : Controller
     {
-        //
-        // GET: /Account/
-
         public ActionResult Index()
         {
             return View();
         }
 
+        [HttpGet]
         public ActionResult Login()
         {
             return View();
@@ -25,7 +23,8 @@ namespace Web_Engineering_549.Controllers
         [HttpPost]
         public ActionResult Login(LoginModel login)
         {
-            return RedirectToAction("Index");
+            var redirectURI = Url.Action("Index");
+            return Json(new {redirect = redirectURI});
         }
 
     }
