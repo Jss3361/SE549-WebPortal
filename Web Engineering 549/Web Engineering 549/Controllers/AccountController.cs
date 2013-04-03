@@ -4,11 +4,15 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Web_Engineering_549.Models;
+using Web_Engineering_549.ControllerAttributes;
+using Web_Engineering_549.Services;
+using System.Net;
 
 namespace Web_Engineering_549.Controllers
 {
     public class AccountController : Controller
     {
+        [Authenticate]
         public ActionResult Index()
         {
             return View();
@@ -17,14 +21,44 @@ namespace Web_Engineering_549.Controllers
         [HttpGet]
         public ActionResult Login()
         {
+            var sessionCookie = Request.Cookies["SESSION_ID"];
+            if (sessionCookie != null)
+            {
+                var sessionService = new SessionService();
+                var sessionId = new Guid(sessionCookie.Value);
+                if (sessionService.ValidateSession(sessionId))
+                {
+                    return RedirectToAction("Index");
+                }
+                
+            }
+
             return View();
         }
 
         [HttpPost]
-        public ActionResult Login(LoginModel login)
+        public ActionResult Login(Account account)
         {
-            var redirectURI = Url.Action("Index");
-            return Json(new {redirect = redirectURI});
+            var sessionID = Guid.NewGuid();
+            var sessionExpiresAt = DateTime.Now.AddHours(5);
+            account.sessionID = sessionID;
+            account.sessionExpiresAt = sessionExpiresAt;
+
+            var accountService = new AccountService();
+            if (accountService.Login(account))
+            {
+                var sessionCookie = new HttpCookie("SESSION_ID")
+                {
+                    Value = sessionID.ToString(),
+                    Expires = sessionExpiresAt
+                };
+
+                Response.Cookies.Add(sessionCookie);
+                var redirectURI = Url.Action("Index");
+                return Json(new { redirect = redirectURI });
+            }
+
+            return new HttpStatusCodeResult((int)HttpStatusCode.InternalServerError); 
         }
 
     }

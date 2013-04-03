@@ -48,7 +48,7 @@
 
     var loginPost = function (fbResponse) {
         $.ajax({
-            url: "Account/Login",
+            url: "/Account/Login",
             type: 'POST',
             data: {
                 userID: fbResponse.userID,
