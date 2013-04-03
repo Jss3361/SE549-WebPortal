@@ -26,18 +26,6 @@
             fjs.parentNode.insertBefore(js, fjs);
         } (document, 'script', 'facebook-jssdk'));
 
-        //        FB.getLoginStatus(function (response) {
-        //            if (response.status === 'connected') {
-        //                //loginPost(response.authResponse);
-        //            } else if (response.status === 'not_authorized') {
-        //                // not_authorized
-        //                alert('not_authorized');
-        //            } else {
-        //                // not_logged_in
-        //                alert('not logged in');
-        //            }
-        //        });
-
         FB.Event.subscribe('auth.authResponseChange', function (response) {
             if (response.status == "connected") {
                 loginPost(response.authResponse);
@@ -47,6 +35,8 @@
     };
 
     var loginPost = function (fbResponse) {
+        $('.fb-login-button').hide();
+        $('#loginLoader').show();
         $.ajax({
             url: "/Account/Login",
             type: 'POST',
@@ -60,6 +50,9 @@
             window.location.href = data.redirect;
         }).fail(function () {
             alert("error");
+        }).always(function () {
+            $('#loginLoader').hide();
+            $('.fb-login-button').show();
         });
     }
 } ());
