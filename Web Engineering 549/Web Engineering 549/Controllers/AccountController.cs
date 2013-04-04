@@ -37,6 +37,22 @@ namespace Web_Engineering_549.Controllers
         }
 
         [HttpPost]
+        public JsonResult Logout()
+        {
+            var redirectURI = Url.Action("Index");
+
+            if (Request.Cookies["SESSION_ID"] != null)
+            {
+                var c = new HttpCookie("SESSION_ID");
+                c.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Add(c);
+                return Json(new { redirect = redirectURI });
+            }
+
+            return Json(new { redirect = redirectURI });
+        }
+
+        [HttpPost]
         public ActionResult Login(Account account)
         {
             var sessionID = Guid.NewGuid();

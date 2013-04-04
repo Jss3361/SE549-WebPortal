@@ -13,6 +13,10 @@
                     <li><a href="/Chat/Chat">Chat</a> </li>
                     <li><a href="/Stocks/Stocks">Stocks</a> </li>
                     <li><a href="/Calendar/Calendar">Calendar</a> </li>
+                    @if(Request.Cookies["SESSION_ID"] != null) {
+                        <li><a id="logoutLink" href="#">Logout</a></li>
+                        <script src="@Url.Content("~/Scripts/Account/facebookLogout.js")"></script>
+                    }
                 </ul>
             </div>
         </div>
