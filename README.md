@@ -1,4 +1,4 @@
 SE549-WebPortal
 ===============
 
-Web Portal application for Web Engineering SE549
+Web Portal application for Web Engineering
