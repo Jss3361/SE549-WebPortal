@@ -1,0 +1,48 @@
+﻿<div class="hero-unit">
+    <h1>Welcome to the Stock Portal!</h1>
+    <p>
+        Here you can view, purchase, and sell stocks.
+    </p>
+    
+    <table id="stockSearchTable">
+        <tr>
+            <td>Stock Search:</td>
+            <td>
+                <input type="text" id="stockSearchField" />
+            </td>
+            <td><input type="button" value="Search" id="stockSearchButton" onclick="getStockQuote();" /></td>
+        </tr>
+    </table>
+
+    <table id="tickerTable">
+        <tr>
+            <td>
+    <div id="gainerDiv">
+        <h4>Top 10 Gainers</h4>
+        <script type="text/javascript">
+            var gainerTick = new WBIHorizontalTicker('gainers');
+            gainerTick.start();
+        </script>
+    </div>
+            </td>
+            <td>
+    <div id="loserDiv">
+        <h4>Top 10 Losers</h4>
+        <script type="text/javascript">
+            var loserTick = new WBIHorizontalTicker('losers');
+            loserTick.start();
+        </script>
+    </div>
+            </td>
+        </tr>
+    </table>
+
+
+    
+    <table id="stockQuoteTable">
+        <tr>
+            <td><div id="resultsDiv"></div></td>
+            <td><div id="graphDiv" style="width:500px; height:400px;"></div></td>
+        </tr>
+    </table>
+</div>
