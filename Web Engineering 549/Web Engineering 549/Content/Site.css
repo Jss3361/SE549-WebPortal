@@ -1,5 +1,12 @@
+
+@media (max-width: 979px) {
+  body {
+    padding-top: 0px;
+  }
+}
 body
 {
+    padding-top: 60px;
     font-size: .85em;
     font-family: "Trebuchet MS", Verdana, Helvetica, Sans-Serif;
     color: #232323;

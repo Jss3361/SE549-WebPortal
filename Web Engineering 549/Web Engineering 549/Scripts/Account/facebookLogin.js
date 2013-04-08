@@ -34,8 +34,8 @@
 
     };
 
+    var countDown = 3;
     var loginPost = function (fbResponse) {
-        $('.fb-login-button').hide();
         $('#loginLoader').show();
         $.ajax({
             url: "/Account/Login",
@@ -47,12 +47,19 @@
                 expiresIn: fbResponse.expriesIn
             }
         }).done(function (data) {
-            window.location.href = data.redirect;
+            $('#redirectLoader').show();
+            setInterval(function () {
+                if (countDown === 0) {
+                    window.location.href = data.redirect;
+                }
+
+                $('#redirectLoader').html('Redirecting to dashboard in ' + countDown);
+                countDown = countDown - 1;
+            }, 1000);
         }).fail(function () {
             alert("error");
         }).always(function () {
             $('#loginLoader').hide();
-            $('.fb-login-button').show();
         });
     }
 } ());

@@ -1,0 +1,18 @@
+div.widget {
+    float: left;
+    border: solid thin #808080;
+}
+
+#leftcol {
+    float: left;
+    width: 420px;
+    margin: 0;
+    padding: 1em;
+}
+
+#rightcol {
+    float: right;
+    width: 160px;
+    margin: 0;
+    padding: 1em;
+}
