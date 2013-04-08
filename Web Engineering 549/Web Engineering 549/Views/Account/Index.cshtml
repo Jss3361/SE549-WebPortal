@@ -1,12 +1,11 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Web Dashboard";
 }
 
 <link href="@Url.Content("~/CSS/account.css")" rel="stylesheet" type="text/css" />
 
-<h2>Index</h2>
-
 <div id="leftcol">
+    <h2>Web Dashboard News Feed</h2>
     <div class="widget">
         <div id="fb-root"></div>
         <script>    (function (d, s, id) {
@@ -16,7 +15,6 @@
         js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=449592011787745";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
-
         <div class="fb-comments" data-href="http://www.se.rit.edu/" data-width="400px" data-num-posts="10"></div>
     </div>
 </div>
@@ -81,27 +79,4 @@
             </tr>
         </table>
     </div>
-</div>
-
-<div id="middlecol">
-    <div class="widget" id="chat">
-        <div id="menu">
-            <p class="welcome">
-                Welcome,<input id="username" value="anonymous" />
-            </p>
-            <div style="clear: both"></div>
-        </div>
-
-        <div id="chatbox">
-            <textarea id="messages" readonly="readonly" rows="20"></textarea>
-        </div>
-
-        <form name="message" action="" id="userinput">
-            <input name="usermsg" type="text" id="message" />
-            <input
-                type="button" name="submitmsg" value="Send..."
-                onclick="sendMessage();" />
-        </form>
-    </div>
-
 </div>
