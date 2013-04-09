@@ -16,7 +16,7 @@ document.getElementById('idError').removeChild(document.getElementById("idError"
 }   FB.ui(
      { 
       method: 'friends.add', 
-      id: friendID assuming you set this variable previously...
+      id: friendID, 
      }, 
      function(param){
 
