@@ -13,8 +13,6 @@
     <div class="widget">
         <div id="fb-root"></div>
         <script>    (function (d, s, id) {
-
-
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
         js = d.createElement(s); js.id = id;
@@ -118,7 +116,7 @@
 <table id="homeStockSearchTable">
      <tr>
          <td>Stock Search:</td>
-         <td><input type="text" id="homeStockSearchField" onkeydown="autoCompleteSymbol(this);" /></td>
+         <td><input type="text" id="homeStockSearchField" class="searchField"/></td>
          <td><input type="button" value="Search" id="homeStockSearchButton" onclick="getStockQuoteOnHome();" /></td>
      </tr>
 </table>
@@ -127,3 +125,4 @@
     <div id="stockChartDiv"></div>
 </div>
 </div>
+<script type="text/javascript" src="@Url.Content("~/Scripts/Stocks/homeStockAutoComplete.js")"></script>

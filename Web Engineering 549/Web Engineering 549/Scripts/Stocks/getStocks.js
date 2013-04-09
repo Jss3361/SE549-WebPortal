@@ -1,44 +1,5 @@
 ﻿google.load('visualization', '1.0', { 'packages': ['corechart'] });
 
-/*$(function () {
-
-    $("#stockSearchField").autocomplete({
-        source: function (request, response) {
-            $.ajax({
-                url: "http://dev.markitondemand.com/Api/Lookup/jsonp/",
-                dataType: "jsonp",
-                data: {
-                    input: request.term
-                },
-                success: function (data) {
-                    console.log(data);
-                    response($.map(data, function (item) {
-                        return {
-                            label: item.Name + ',' + item.Symbol + ', ' + item.Exchange,
-                            value: item.Symbol
-                        }
-                    }));
-                }
-            });
-        },
-        minLength: 2,
-        select: function (event, ui) {
-            log(ui.item ?
-              "Selected: " + ui.item.label :
-              "Nothing selected, input was " + this.value);
-        },
-        open: function () {
-            $(this).removeClass("ui-corner-all").addClass("ui-corner-top");
-        },
-        close: function () {
-            $(this).removeClass("ui-corner-top").addClass("ui-corner-all");
-        }
-    });
-
-});*/
-
-
-
 function getStockQuote() {
     
     var symbol = document.getElementById("stockSearchField").value;
@@ -126,9 +87,12 @@ function getStockQuote() {
                                 curveType: "function",
                                 width: 647,
                                 height: 370,
-                                title: stockName + ' - History for Past 5 Years'
+                                title: stockName + ' - History for Past 3 Years'
                             }
                         );
+                },
+                error: function () {
+                    $("chartDiv").html("<h4 class='noChart'>No Chart Available for - " + stockName + "</h4>");
                 }
             });
 
@@ -139,6 +103,7 @@ function getStockQuote() {
         else {
             var result = "<h4 class='noQuote'>Symbol invalid.  Please enter a valid stock symbol</h4>";
             $("#resultsDiv").html(result);
+            $("#graphDiv").html("");
         }
     });
 }
@@ -155,14 +120,22 @@ function getStockQuoteOnHome() {
             var result = "<table class='table' id='quoteTable'>";
             result += "<tr><th colspan='2'>" + data.query.results.quote.Name + "</th></tr>";
             result += "<tr><td>Symbol</td><td>" + data.query.results.quote.symbol + "</td></tr>";
-            result += "<tr><td>Change</td><td>" + data.query.results.quote.Change + "</td></tr>";
-            result += "<tr><td>Days High</td><td>" + data.query.results.quote.DaysHigh + "</td></tr>";
-            result += "<tr><td>Days Low</td><td>" + data.query.results.quote.DaysLow + "</td></tr>";
-            result += "<tr><td>Days Range</td><td>" + data.query.results.quote.DaysRange + "</td></tr>";
-            result += "<tr><td>Volume</td><td>" + data.query.results.quote.Volume + "</td></tr>";
-            result += "<tr><td>Last Trade Price</td><td>" + data.query.results.quote.LastTradePriceOnly + "</td></tr>";
-            result += "<tr><td>Year High</td><td>" + data.query.results.quote.YearHigh + "</td></tr>";
-            result += "<tr><td>Year Low</td><td>" + data.query.results.quote.YearLow + "</td></tr></table>";
+            
+            var change = data.query.results.quote.Change;
+            if (change.indexOf('-') == -1) {
+                result += "<tr><td>Change</td><td style='color:green'>" + change
+            }
+            else {
+                result += "<tr><td>Change</td><td style='color:red'>" + change + "</td></tr>";
+            }
+
+            result += "<tr><td>Days High</td><td>$" + data.query.results.quote.DaysHigh + "</td></tr>";
+            result += "<tr><td>Days Low</td><td>$" + data.query.results.quote.DaysLow + "</td></tr>";
+            result += "<tr><td>Days Range</td><td>$" + data.query.results.quote.DaysRange + "</td></tr>";
+            result += "<tr><td>Volume</td><td>$" + data.query.results.quote.Volume + "</td></tr>";
+            result += "<tr><td>Last Trade Price</td><td>$" + data.query.results.quote.LastTradePriceOnly + "</td></tr>";
+            result += "<tr><td>Year High</td><td>$" + data.query.results.quote.YearHigh + "</td></tr>";
+            result += "<tr><td>Year Low</td><td>$" + data.query.results.quote.YearLow + "</td></tr></table>";
 
             var stockName = data.query.results.quote.Name;
 
@@ -216,6 +189,7 @@ function getStockQuoteOnHome() {
         else {
             var result = "<h5 class='noQuote'>Symbol invalid.  Please enter a valid stock symbol</h5>";
             $("#stockQuoteDiv").html(result);
+            $("#stockChartDiv").html("");
         }
     });
 

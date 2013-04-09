@@ -23,7 +23,10 @@
     width:50%;
 }
 
-
+#stockQuoteTable td, #stockResultsDiv
+{
+    vertical-align:top;
+}
 
 
 .ui-autocomplete-loading 
