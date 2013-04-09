@@ -8,9 +8,10 @@
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript" src="@Url.Content("~/Scripts/Stocks/getStocks.js")"></script>
 <link href="@Url.Content("~/CSS/stocks.css")" type="text/css" rel="stylesheet" />
-<div id="leftcol">
+<div class="row-fluid">
+<div class="span4">
     <h2>Web Dashboard News Feed</h2>
-    <div class="widget">
+
         <div id="fb-root"></div>
         <script>    (function (d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
@@ -20,109 +21,79 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
         <div class="fb-comments" data-href="http://www.se.rit.edu/" data-width="400px" data-num-posts="10"></div>
+
+
+
     </div>
+    <div class="span4">
+<div style="border-style: none;border-width: 1;border-color: #FFFFFF;overflow: visible;"><div id="newsblock80030906" style="word-wrap: break-word; padding: 5px;">
+<!-- DO NOT ALTER, REMOVE, OR IN ANY WAY TRY TO HIDE THE FOLLOWING TAG OR ITS CONTENTS OR BLASTCASTA WILL NOT FUNCTION PROPERLY. --><div align="center" style="font-size: 8pt;"><br /><a href="http://www.blastcasta.com/" style="" target="_top"><b>Get Your Twitter Widget</b><br />Powered by BlastCasta</a></div>
+</div></div>
+
+<script id="scrnewsblock80030906" type="text/javascript"></script>
+<script type="text/javascript"> /* <![CDATA[ */ 
+setTimeout('document.getElementById(\'scrnewsblock80030906\').src = (document.location.protocol == \'https:\' ? \'https\' : \'http\') + \'://www.poweringnews.com/newsjavascript.aspx?feedurl=http%3A//search.twitter.com/search.rss%3Fq%3D%2523YOLO&maxitems=5&showfeedtitle=1&showtitle=1&showdate=0&showsummary=0&showauthor=0&showactionsbox=0&showrsslink=0&showcopyright=0&opennewwindow=0&inheritstyles=1&bgcolor=%23FFFFFF&titlefontsize=10&summaryfontsize=10&fontfamily=Arial%2CHelvetica&titlecolor=%230000CC&summarycolor=%23000000&sepstyle=solid&sepcolor=%23A0A0A0&objectid=newsblock80030906\'', 500);
+ /* ]]> */ </script>
+ </div>
+
+
+
+ <div class="span4">
+
+        <div id="stocksDiv">
+            <h4>Top 5 Stocks</h4>
+            <table id="topStockTable" class="table">
+                <tr>
+                    <td>Symbol</td>
+                    <td>Last Price</td>
+                    <td>Change</td>
+                    <td>Shares</td>
+                </tr>
+                <tr>
+                    <td>AAPL</td>
+                    <td>428.35</td>
+                    <td>0.00 (0.00%)</td>
+                    <td>20</td>
+                </tr>
+                <tr>
+                    <td>MSFT</td>
+                    <td>27.92</td>
+                    <td>0.00 (0.00%)</td>
+                    <td>15</td>
+                </tr>
+                <tr>
+                    <td>F</td>
+                    <td>13.40</td>
+                    <td>0.00 (0.00%)</td>
+                    <td>44</td>
+                </tr>
+                <tr>
+                    <td>GM</td>
+                    <td>152.00</td>
+                    <td>0.00 (0.00%)</td>
+                    <td>152</td>
+                </tr>
+                <tr>
+                    <td>IBM</td>
+                    <td>406.00</td>
+                    <td>0.00 (0.00%)</td>
+                    <td>406</td>
+                </tr>
+            </table>
+            <table id="homeStockSearchTable">
+                <tr>
+                    <td>Stock Search:</td>
+                    <td>
+                        <input type="text" id="homeStockSearchField" onkeydown="autoCompleteSymbol(this);" /></td>
+                    <td>
+                        <input type="button" value="Search" id="homeStockSearchButton" onclick="getStockQuoteOnHome();" /></td>
+                </tr>
+            </table>
+            <div id="stockResultsDiv">
+                <div id="stockQuoteDiv"></div>
+                <div id="stockChartDiv"></div>
+            </div>
+        </div>
+</div>
 </div>
 
-<div id="rightcol">
-    <div class="widget" id="events">
-        <h3>Events for Today</h3>
-        <table border="1">
-            <tr>
-                <td>10:30-11:30<br />
-                    Buy new stocks</td>
-            </tr>
-            <tr>
-                <td>12:30-4:30<br />
-                    meatball sub time</td>
-            </tr>
-            <tr>
-                <td>9:20-10:30<br />
-                    find new friends</td>
-            </tr>
-        </table>
-    </div>
-
-    <div class="widget" id="stocks">
-        <h3>Top 5 Stocks</h3>
-        <table border="1">
-            <tr>
-                <td>Symbol</td>
-                <td>Last Price</td>
-                <td>Change</td>
-                <td>Shares</td>
-            </tr>
-            <tr>
-                <td>AAPL</td>
-                <td>428.35</td>
-                <td>0.00 (0.00%)</td>
-                <td>20</td>
-            </tr>
-            <tr>
-                <td>MSFT</td>
-                <td>27.92</td>
-                <td>0.00 (0.00%)</td>
-                <td>15</td>
-            </tr>
-            <tr>
-                <td>F</td>
-                <td>13.40</td>
-                <td>0.00 (0.00%)</td>
-                <td>44</td>
-            </tr>
-            <tr>
-                <td>GM</td>
-                <td>152.00</td>
-                <td>0.00 (0.00%)</td>
-                <td>152</td>
-            </tr>
-            <tr>
-                <td>IBM</td>
-                <td>406.00</td>
-                <td>0.00 (0.00%)</td>
-                <td>406</td>
-            </tr>
-        </table>
-    </div>
-</div>
-    <div class="fb-comments" data-href="http://www.se.rit.edu/" data-width="470" data-num-posts="10"></div>
-<div id="stocksDiv">
-    <h4>Top 5 Stocks</h4>
-    <table id="topStockTable" class="table">
-        <tr>
-            <th>Sample Stock Name</th>
-            <th>Change</th>
-        </tr>
-        <tr>
-            <td>Sample Stock 1</td>
-            <td>+0.70</td>
-        </tr>
-        <tr>
-            <td>Sample Stock 2</td>
-            <td>+0.60</td>
-        </tr>
-        <tr>
-            <td>Sample Stock 3</td>
-            <td>+0.50</td>
-        </tr>
-        <tr>
-            <td>Sample Stock 4</td>
-            <td>+0.40</td>
-        </tr>
-        <tr>
-            <td>Sample Stock 5</td>
-            <td>+0.30</td>
-        </tr>
-    </table>
-<table id="homeStockSearchTable">
-     <tr>
-         <td>Stock Search:</td>
-         <td><input type="text" id="homeStockSearchField" class="searchField"/></td>
-         <td><input type="button" value="Search" id="homeStockSearchButton" onclick="getStockQuoteOnHome();" /></td>
-     </tr>
-</table>
-<div id="stockResultsDiv">
-    <div id="stockQuoteDiv"></div>
-    <div id="stockChartDiv"></div>
-</div>
-</div>
-<script type="text/javascript" src="@Url.Content("~/Scripts/Stocks/homeStockAutoComplete.js")"></script>

@@ -1,5 +1,9 @@
 ﻿function upload() {
-    var imgURL = "http://spamusement.com/gfx/250.gif"; //change with your external photo url
+
+
+
+
+    var imgURL = "~\images\gw001.jpg"; //change with your external photo url
     var token = FB.getAuthResponse()['accessToken'];
 
     FB.api('/me/photos', 'post', {
