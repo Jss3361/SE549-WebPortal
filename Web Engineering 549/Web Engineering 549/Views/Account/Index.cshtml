@@ -8,9 +8,10 @@
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript" src="@Url.Content("~/Scripts/Stocks/getStocks.js")"></script>
 <link href="@Url.Content("~/CSS/stocks.css")" type="text/css" rel="stylesheet" />
-<div id="leftcol">
+<div class="row-fluid">
+<div class="span4">
     <h2>Web Dashboard News Feed</h2>
-    <div class="widget">
+
         <div id="fb-root"></div>
         <script>    (function (d, s, id) {
 
@@ -22,29 +23,25 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
         <div class="fb-comments" data-href="http://www.se.rit.edu/" data-width="400px" data-num-posts="10"></div>
-    </div>
-</div>
 
-<div id="content">
-    <div class="widget" id="events">
-        <h3>Events for Today</h3>
-        <table border="1">
-            <tr>
-                <td>10:30-11:30<br />
-                    Buy new stocks</td>
-            </tr>
-            <tr>
-                <td>12:30-4:30<br />
-                    meatball sub time</td>
-            </tr>
-            <tr>
-                <td>9:20-10:30<br />
-                    find new friends</td>
-            </tr>
-        </table>
-    </div>
 
-    <div class="widget">
+
+    </div>
+    <div class="span4">
+<div style="border-style: none;border-width: 1;border-color: #FFFFFF;overflow: visible;"><div id="newsblock80030906" style="word-wrap: break-word; padding: 5px;">
+<!-- DO NOT ALTER, REMOVE, OR IN ANY WAY TRY TO HIDE THE FOLLOWING TAG OR ITS CONTENTS OR BLASTCASTA WILL NOT FUNCTION PROPERLY. --><div align="center" style="font-size: 8pt;"><br /><a href="http://www.blastcasta.com/" style="" target="_top"><b>Get Your Twitter Widget</b><br />Powered by BlastCasta</a></div>
+</div></div>
+
+<script id="scrnewsblock80030906" type="text/javascript"></script>
+<script type="text/javascript"> /* <![CDATA[ */ 
+setTimeout('document.getElementById(\'scrnewsblock80030906\').src = (document.location.protocol == \'https:\' ? \'https\' : \'http\') + \'://www.poweringnews.com/newsjavascript.aspx?feedurl=http%3A//search.twitter.com/search.rss%3Fq%3D%2523YOLO&maxitems=5&showfeedtitle=1&showtitle=1&showdate=0&showsummary=0&showauthor=0&showactionsbox=0&showrsslink=0&showcopyright=0&opennewwindow=0&inheritstyles=1&bgcolor=%23FFFFFF&titlefontsize=10&summaryfontsize=10&fontfamily=Arial%2CHelvetica&titlecolor=%230000CC&summarycolor=%23000000&sepstyle=solid&sepcolor=%23A0A0A0&objectid=newsblock80030906\'', 500);
+ /* ]]> */ </script>
+ </div>
+
+
+
+ <div class="span4">
+
         <div id="stocksDiv">
             <h4>Top 5 Stocks</h4>
             <table id="topStockTable" class="table">
@@ -99,5 +96,6 @@
                 <div id="stockChartDiv"></div>
             </div>
         </div>
-    </div>
 </div>
+</div>
+
