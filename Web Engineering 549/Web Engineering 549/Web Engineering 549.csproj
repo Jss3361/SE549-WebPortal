@@ -135,6 +135,7 @@
     <Content Include="Scripts\Calendar\fullcalendar.js" />
     <Content Include="Scripts\Calendar\fullcalendar.min.js" />
     <Content Include="Scripts\Calendar\gcal.js" />
+    <Content Include="Scripts\Facebook\addFriend.js" />
     <Content Include="Scripts\Facebook\sendMessage.js" />
     <Content Include="Scripts\Facebook\updateStatus.js" />
     <Content Include="Scripts\Facebook\uploadPhoto.js" />
