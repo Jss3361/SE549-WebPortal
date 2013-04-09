@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.IO;
+using Web_Engineering_549.Models;
 
 namespace Web_Engineering_549.Controllers
 {
@@ -20,7 +21,20 @@ namespace Web_Engineering_549.Controllers
         [HttpGet]
         public ActionResult Facebook()
         {
-            return View();
+            var files = Directory.GetFiles(Server.MapPath("~/images/"));
+            var array = new List<string>();
+            foreach(var _file in files) 
+            {
+                var index = _file.IndexOf("images");
+                var str = _file.Substring(index);
+                var file = Request.Url.GetLeftPart(UriPartial.Authority) + "/" + str.Replace("\\", "/");
+                array.Add(file);
+            }
+            var model = new Images()
+            {
+                images = array.ToArray()
+            };
+            return View(model);
         }
         [HttpPost]
         public ActionResult Facebook(HttpPostedFileBase file)
@@ -37,7 +51,7 @@ namespace Web_Engineering_549.Controllers
             // Code to save file in DB by passing the file path
 
             //----------------------------------------------
-            return View();
+            return RedirectToAction("Facebook");
         }
     }
 }

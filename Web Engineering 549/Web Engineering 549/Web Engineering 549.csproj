@@ -82,6 +82,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\Images.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AccountService.cs" />
     <Compile Include="Services\SessionService.cs" />
@@ -131,6 +132,7 @@
     <Content Include="Scripts\Account\facebookLogout.js" />
     <Content Include="images\gw001.jpg" />
     <Content Include="images\gw002.jpg" />
+    <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Calendar\fullcalendar.js" />
     <Content Include="Scripts\Calendar\fullcalendar.min.js" />
