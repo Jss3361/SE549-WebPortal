@@ -1,8 +1,10 @@
 ﻿function addFriend(){
+var friendID = document.getElementById('idBox').value
+
     FB.ui(
      { 
       method: 'friends.add', 
-      id: 15703884, // assuming you set this variable previously...
+      id: friendID assuming you set this variable previously...
      }, 
      function(param){
 
