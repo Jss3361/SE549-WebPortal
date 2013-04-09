@@ -1,7 +1,19 @@
 ﻿function addFriend(){
 var friendID = document.getElementById('idBox').value
 
-    FB.ui(
+   if(friendID == ""){
+var message = document.createTextNode("You must specify an ID.");
+if(document.getElementById('idError').childNodes.length>0){
+document.getElementById('idError').removeChild(document.getElementById("idError").firstChild);
+}
+document.getElementById('idError').appendChild(message);
+}
+
+
+if(friendID != ""){
+if(document.getElementById('idError').childNodes.length>0){
+document.getElementById('idError').removeChild(document.getElementById("idError").firstChild);
+}   FB.ui(
      { 
       method: 'friends.add', 
       id: friendID assuming you set this variable previously...
@@ -19,3 +31,4 @@ var friendID = document.getElementById('idBox').value
      }
     );
     }
+   }
