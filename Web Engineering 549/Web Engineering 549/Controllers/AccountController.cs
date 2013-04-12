@@ -12,7 +12,6 @@ namespace Web_Engineering_549.Controllers
 {
     public class AccountController : Controller
     {
-        [Authenticate]
         public ActionResult Index()
         {
             return View();

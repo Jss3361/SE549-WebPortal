@@ -47,6 +47,14 @@
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="PusherServer, Version=2.0.4822.23304, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Desktop\MvcApplicationChat\MvcApplicationChat\bin\PusherServer.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=104.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Desktop\MvcApplicationChat\MvcApplicationChat\bin\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -125,9 +133,12 @@
     <Content Include="CSS\account.css" />
     <Content Include="CSS\fullcalendar.css" />
     <Content Include="CSS\fullcalendar.print.css" />
+    <Content Include="CSS\jquery.ui.chatbox.css" />
     <Content Include="CSS\stocks.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="PusherServer.dll" />
+    <Content Include="RestSharp.dll" />
     <Content Include="Scripts\Account\facebookLogin.js" />
     <Content Include="Scripts\Account\facebookLogout.js" />
     <Content Include="images\gw001.jpg" />
@@ -148,6 +159,7 @@
     <Content Include="Scripts\jquery-ui-1.10.2.custom.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.11.js" />
     <Content Include="Scripts\jquery-ui-1.8.11.min.js" />
+    <Content Include="Scripts\jquery.ui.chatbox.js" />
     <Content Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
