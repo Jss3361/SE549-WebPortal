@@ -12,5 +12,15 @@ namespace Web_Engineering_549.Services
         {
             return true;
         }
+
+        public Boolean ValidateSession(Guid sessionId)
+        {
+            return true;
+        }
+
+        public Guid GetAccountId(Guid sessionId)
+        {
+            return Guid.Empty;
+        }
     }
 }

@@ -82,18 +82,21 @@
   <ItemGroup>
     <Compile Include="ControllerAttributes\AuthenticateAttribute.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\ChatController.cs" />
     <Compile Include="Controllers\FacebookController.cs" />
     <Compile Include="Controllers\StocksController.cs" />
+    <Compile Include="Database\EntityContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\ChatMessage.cs" />
     <Compile Include="Models\Images.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AccountService.cs" />
-    <Compile Include="Services\SessionService.cs" />
+    <Compile Include="Services\ChatService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\channel.html" />
@@ -220,9 +223,7 @@
   <ItemGroup>
     <Content Include="Views\Calendar\Calendar.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Database\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Views\Stocks\StocksHero.cshtml" />
   </ItemGroup>

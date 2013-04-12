@@ -12,6 +12,10 @@ namespace Web_Engineering_549.Controllers
 {
     public class AccountController : Controller
     {
+        AccountService accountService = new AccountService();
+
+
+        [Authenticate]
         public ActionResult Index()
         {
             return View();
@@ -23,9 +27,8 @@ namespace Web_Engineering_549.Controllers
             var sessionCookie = Request.Cookies["SESSION_ID"];
             if (sessionCookie != null)
             {
-                var sessionService = new SessionService();
                 var sessionId = new Guid(sessionCookie.Value);
-                if (sessionService.ValidateSession(sessionId))
+                if (accountService.ValidateSession(sessionId))
                 {
                     return RedirectToAction("Index");
                 }

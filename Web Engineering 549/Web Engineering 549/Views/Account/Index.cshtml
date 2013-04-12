@@ -10,24 +10,30 @@
 
 <script>
     $(document).ready(function () {
-        // to create
         $("#chat_div").chatbox({ id: "chat_div",
             title: "Chat",
             user: "test",
             offset: 20,
             messageSent: function (id, user, msg) {
-                $.ajax({
-                    url: '/Chat/SendMessage/',
-                    data: { message: msg },
-                    type: 'POST'
+                FB.api('/me', function (response) {
+                    $.ajax({
+                        url: '/Chat/SendMessage/',
+                        data: { message: msg, username: response.first_name},
+                        type: 'POST'
+                    });
                 });
-            } 
+            }
         });
 
         var pusher = new Pusher('fe769be86f1e807ab53c');
         var channel = pusher.subscribe('test_channel');
         channel.bind('test_event', function (data) {
-            $("#chat_div").chatbox("option", "boxManager").addMsg("test", data.message);
+            $("#chat_div").chatbox("option", "boxManager").addMsg(data.username, data.message);
+            $.ajax({
+                url: '/Chat/AddChatHistory/',
+                data: { chatMsgId: data.chatMsgId },
+                type: 'POST'
+            });
         });
     });
 </script>
@@ -45,7 +51,7 @@
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
         js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=449592011787745";
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=425510954211693";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
         <div class="fb-comments" data-href="http://www.se.rit.edu/" data-width="400px" data-num-posts="10"></div>

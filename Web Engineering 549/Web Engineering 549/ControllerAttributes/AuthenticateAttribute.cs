@@ -15,9 +15,9 @@ namespace Web_Engineering_549.ControllerAttributes
             var sessionCookie = filterContext.HttpContext.Request.Cookies["SESSION_ID"];
             if (sessionCookie != null)
             {
-                var sessionService = new SessionService();
+                var accountService = new AccountService();
                 var sessionId = new Guid(sessionCookie.Value);
-                if (sessionService.ValidateSession(sessionId))
+                if (accountService.ValidateSession(sessionId))
                 {
                     return;
                 }
