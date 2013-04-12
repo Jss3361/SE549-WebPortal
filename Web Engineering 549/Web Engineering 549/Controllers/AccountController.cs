@@ -10,7 +10,7 @@ using System.Net;
 
 namespace Web_Engineering_549.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         AccountService accountService = new AccountService();
 
@@ -42,6 +42,8 @@ namespace Web_Engineering_549.Controllers
         public JsonResult Logout()
         {
             var redirectURI = Url.Action("Index");
+
+            accountService.Logout(base.GetSession());
 
             if (Request.Cookies["SESSION_ID"] != null)
             {

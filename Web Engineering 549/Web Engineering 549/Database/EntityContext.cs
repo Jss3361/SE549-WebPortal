@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 using Web_Engineering_549.Models;
+using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace Web_Engineering_549.Database
 {
@@ -13,7 +14,12 @@ namespace Web_Engineering_549.Database
                 : base("name=WebDashboardEntities")
             {
             }
-            public DbSet<Account> Accounts { get; set; }
-            public DbSet<ChatMessage> ChatMessages { get; set; }
+            public DbSet<Account> Account { get; set; }
+            public DbSet<ChatMessage> ChatMessage { get; set; }
+
+            protected override void OnModelCreating(DbModelBuilder modelBuilder)
+            {
+                modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            }
     }
 }
