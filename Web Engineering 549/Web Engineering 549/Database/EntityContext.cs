@@ -20,6 +20,16 @@ namespace Web_Engineering_549.Database
             protected override void OnModelCreating(DbModelBuilder modelBuilder)
             {
                 modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+
+                modelBuilder.Entity<ChatMessage>()
+       .HasMany(u => u.Accounts).WithMany(r => r.ChatMessages)
+            .Map(m =>
+            {
+                m.ToTable("Account_ChatMessage");
+                m.MapLeftKey("chatMsgId");
+                m.MapRightKey("userId");
+            });
+
             }
     }
 }

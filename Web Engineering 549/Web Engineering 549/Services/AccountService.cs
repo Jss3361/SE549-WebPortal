@@ -59,10 +59,5 @@ namespace Web_Engineering_549.Services
         {
             return true;
         }
-
-        public Guid GetAccountId(Guid sessionId)
-        {
-            return Guid.Empty;
-        }
     }
 }

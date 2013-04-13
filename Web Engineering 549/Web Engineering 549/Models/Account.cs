@@ -13,5 +13,6 @@ namespace Web_Engineering_549.Models
         public System.Int64 userID { get; set; }
         public Guid? sessionID { get; set; }
         public DateTime? sessionExpiresAt { get; set; }
+        public virtual List<ChatMessage> ChatMessages { get; set; }
     }
 }

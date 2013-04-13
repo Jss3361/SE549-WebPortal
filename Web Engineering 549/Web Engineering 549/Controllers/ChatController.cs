@@ -32,18 +32,17 @@ namespace Web_Engineering_549.Controllers
                 TimeStamp = DateTime.Now
             };
 
-            var chatMsgId = chatService.SaveChatMessage(chatMessage);
+            chatService.SaveChatMessage(chatMessage);
 
             var pusher = new Pusher("41501", "fe769be86f1e807ab53c", "c6cb978e7721fbd3b6cd");
-            var result = pusher.Trigger("test_channel", "test_event", new { message, username, chatMsgId });
+            var result = pusher.Trigger("test_channel", "test_event", new { message, username, chatMsgId=chatMessage.ChatMsgId });
 
             return new EmptyResult();
         }
 
         public ActionResult AddChatHistory(Guid chatMsgId)
         {
-            var accountId = accountService.GetAccountId(base.GetSession());
-            chatService.AddChatHistoryItem(chatMsgId, accountId);
+            chatService.AddChatHistoryItem(chatMsgId, base.GetSession());
             return new EmptyResult();
         }
 
