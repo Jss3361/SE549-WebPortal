@@ -1,5 +1,5 @@
 ﻿
-        FB.init({ appId: "425510954211693", status: true, cookie: true });
+        FB.init({ appId: fbAppId, status: true, cookie: true });
 
         function postToFeed() {
 

@@ -7,6 +7,7 @@ using PusherServer;
 using Web_Engineering_549.Models;
 using Web_Engineering_549.Services;
 using Web_Engineering_549.ControllerAttributes;
+using System.Web.Configuration;
 
 namespace Web_Engineering_549.Controllers
 {
@@ -21,6 +22,7 @@ namespace Web_Engineering_549.Controllers
             return View();
         }
 
+        [Authenticate]
         [HttpPost]
         public ActionResult SendMessage(string message, string username)
         {
@@ -34,12 +36,17 @@ namespace Web_Engineering_549.Controllers
 
             chatService.SaveChatMessage(chatMessage);
 
-            var pusher = new Pusher("41501", "fe769be86f1e807ab53c", "c6cb978e7721fbd3b6cd");
-            var result = pusher.Trigger("test_channel", "test_event", new { message, username, chatMsgId=chatMessage.ChatMsgId });
+            var pusher = new Pusher(
+                    WebConfigurationManager.AppSettings["PusherAppId"],
+                    WebConfigurationManager.AppSettings["PusherAppKey"],
+                    WebConfigurationManager.AppSettings["PusherAppSecret"]);
+            var result = pusher.Trigger("chat_channel", "chat_event", new { message, username, chatMsgId = chatMessage.ChatMsgId });
 
             return new EmptyResult();
         }
 
+        [Authenticate]
+        [HttpPost]
         public ActionResult AddChatHistory(Guid chatMsgId)
         {
             chatService.AddChatHistoryItem(chatMsgId, base.GetSession());

@@ -6,12 +6,12 @@
             <p class="navbar-text pull-right">
                     @if(Request.Cookies["SESSION_ID"] != null) {
                         <a id="logoutLink" href="#">Logout</a>
-                        <script src="@Url.Content("~/Scripts/Account/facebookLogout.js")"></script>
+                        <script src="@Url.Content("~/Scripts/Account/facebookLogout.js")" type="text/javascript"></script>
                     }
              </p>
                 <ul class="nav" id="top-navigation">
                     <li><a href="/">Home</a> </li>
-                    <li><a href="/Facebook/Facebook">Facebook</a> </li>
+                    <li><a href="/Facebook/">Facebook</a> </li>
                     <li><a href="/Chat/Chat">Chat</a> </li>
                     <li><a href="/Stocks/Stocks">Stocks</a> </li>
                     <li><a href="/Calendar/Calendar">Calendar</a> </li>
