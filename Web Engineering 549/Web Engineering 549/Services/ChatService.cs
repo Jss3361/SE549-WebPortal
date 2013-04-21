@@ -50,7 +50,7 @@ namespace Web_Engineering_549.Services
             using (var context = new EntityContext())
             {
                 var account = context.Account.SingleOrDefault(x => x.sessionID == sessionId);
-                return account.ChatMessages;
+                return account.ChatMessages.OrderByDescending(x=> x.TimeStamp).ToList();
             }
         }
 
