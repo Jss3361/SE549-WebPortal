@@ -44,5 +44,32 @@ namespace Web_Engineering_549.Services
                 return false;
             }
         }
+
+        public List<ChatMessage> GetChatMessages(Guid sessionId)
+        {
+            using (var context = new EntityContext())
+            {
+                var account = context.Account.SingleOrDefault(x => x.sessionID == sessionId);
+                return account.ChatMessages;
+            }
+        }
+
+        public bool DeleteChatHistory(Guid sessionId)
+        {
+            try
+            {
+                using (var context = new EntityContext())
+                {
+                    var account = context.Account.SingleOrDefault(x => x.sessionID == sessionId);
+                    account.ChatMessages.Clear();
+                    context.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }

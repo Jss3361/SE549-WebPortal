@@ -217,7 +217,7 @@
     <Content Include="Views\Stocks\Stocks.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Chat\Chat.cshtml" />
+    <Content Include="Views\Chat\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Calendar\Calendar.cshtml" />

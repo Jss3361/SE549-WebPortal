@@ -19,7 +19,8 @@ namespace Web_Engineering_549.Controllers
         [Authenticate]
         public ActionResult Index()
         {
-            return View();
+            var messages = chatService.GetChatMessages(base.GetSession());
+            return View(messages);
         }
 
         [Authenticate]
@@ -51,6 +52,15 @@ namespace Web_Engineering_549.Controllers
         {
             chatService.AddChatHistoryItem(chatMsgId, base.GetSession());
             return new EmptyResult();
+        }
+
+        [Authenticate]
+        [HttpPost]
+        public ActionResult DeleteChatHistory()
+        {
+            chatService.DeleteChatHistory(base.GetSession());
+            TempData["Message"] = "Chat history was deleted.";
+            return RedirectToAction("Index");
         }
 
     }
