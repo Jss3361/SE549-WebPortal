@@ -80,3 +80,21 @@ textarea
 {
     display: none;
 }
+
+.message
+{
+    font-weight: bold;
+    color: #1a0edb;
+    text-align:center;
+    margin-bottom: 10px;
+}
+
+.chat-item
+{
+    background-color: #dbe2f3;
+    border-style:solid;
+    border-width:1px;
+    border-color: Black;
+    margin-bottom:2px;
+    
+}

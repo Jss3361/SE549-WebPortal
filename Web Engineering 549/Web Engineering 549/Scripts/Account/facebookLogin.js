@@ -11,8 +11,8 @@
 
     window.fbAsyncInit = function () {
         FB.init({
-            appId: '425510954211693', // App ID
-            channelUrl: 'http://localhost:50055/Content/channel.html', // Channel File
+            appId: fbAppId, // App ID
+            channelUrl: fbChannelUrl, // Channel File
             status: true, // check login status
             cookie: true, // enable cookies to allow the server to access the session
             xfbml: true  // parse XFBML
@@ -22,7 +22,7 @@
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) return;
             js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=425510954211693";
+            js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=" + fbAppId;
             fjs.parentNode.insertBefore(js, fjs);
         } (document, 'script', 'facebook-jssdk'));
 

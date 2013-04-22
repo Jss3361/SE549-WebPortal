@@ -140,17 +140,17 @@
     <Content Include="CSS\stocks.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="PusherServer.dll" />
-    <Content Include="RestSharp.dll" />
     <Content Include="Scripts\Account\facebookLogin.js" />
     <Content Include="Scripts\Account\facebookLogout.js" />
     <Content Include="images\gw001.jpg" />
     <Content Include="images\gw002.jpg" />
+    <Content Include="Scripts\Account\fbNewsFeed.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Calendar\fullcalendar.js" />
     <Content Include="Scripts\Calendar\fullcalendar.min.js" />
     <Content Include="Scripts\Calendar\gcal.js" />
+    <Content Include="Scripts\Account\chat.js" />
     <Content Include="Scripts\Facebook\addFriend.js" />
     <Content Include="Scripts\Facebook\sendMessage.js" />
     <Content Include="Scripts\Facebook\updateStatus.js" />
@@ -171,7 +171,9 @@
     <Content Include="Scripts\Stocks\getStocks.js" />
     <Content Include="Scripts\Stocks\homeStockAutoComplete.js" />
     <Content Include="Scripts\Stocks\stockAutoComplete.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -206,9 +208,6 @@
     <Content Include="Views\Facebook\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Facebook\Facebook.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\UserControls\PrimaryNav.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -218,7 +217,7 @@
     <Content Include="Views\Stocks\Stocks.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Chat\Chat.cshtml" />
+    <Content Include="Views\Chat\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Calendar\Calendar.cshtml" />

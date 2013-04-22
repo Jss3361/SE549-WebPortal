@@ -38,6 +38,7 @@ namespace Web_Engineering_549.Controllers
             return View();
         }
 
+        [Authenticate]
         [HttpPost]
         public JsonResult Logout()
         {

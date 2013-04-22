@@ -1,6 +1,6 @@
 ﻿@model Web_Engineering_549.Models.Images
 
-@using (Html.BeginForm("Facebook", "Facebook", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Index", "Facebook", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div>
         Select Image
@@ -18,29 +18,3 @@
     <div><span>@image.ToString()</span><input class="uploadPhoto" value="set photo" type="button"/></div>
  }
 </div>
-
-<script type="text/javascript">
-
-    $('.uploadPhoto').click(function () {
-        var _this = $(this);
-        var imgURL = _this.prev().html()
-
-        var token = FB.getAuthResponse()['accessToken'];
-
-        FB.api('/me/photos', 'post', {
-            message: 'photo description',
-            status: 'success',
-            url: imgURL,
-            access_token: token
-        }, function (response) {
-
-            if (!response || response.error) {
-                alert('Error occured');
-            } else {
-                alert('success');
-            }
-
-        });
-
-    });
-</script>

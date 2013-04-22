@@ -4,57 +4,25 @@
 
 <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/ui-lightness/jquery-ui.css" rel="Stylesheet" type="text/css"/>
 <link href="@Url.Content("~/CSS/account.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/CSS/stocks.css")" type="text/css" rel="stylesheet" />
 <link href="@Url.Content("~/CSS/jquery.ui.chatbox.css")" rel="Stylesheet" type="text/css"/>
-<script src="@Url.Content("~/Scripts/jquery.ui.chatbox.js")"></script>
+
+<script src="@Url.Content("~/Scripts/jquery.ui.chatbox.js")" type="text/javascript"></script>
 <script src="http://js.pusher.com/2.0/pusher.min.js" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/Account/chat.js")" type="text/javascript"></script>
+<script src="https://www.google.com/jsapi" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/Stocks/getStocks.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/Account/fbNewsFeed.js")" type="text/javascript"></script>
 
-<script>
-    $(document).ready(function () {
-        $("#chat_div").chatbox({ id: "chat_div",
-            title: "Chat",
-            user: "test",
-            offset: 20,
-            messageSent: function (id, user, msg) {
-                FB.api('/me', function (response) {
-                    $.ajax({
-                        url: '/Chat/SendMessage/',
-                        data: { message: msg, username: response.first_name},
-                        type: 'POST'
-                    });
-                });
-            }
-        });
-
-        var pusher = new Pusher('fe769be86f1e807ab53c');
-        var channel = pusher.subscribe('test_channel');
-        channel.bind('test_event', function (data) {
-            $("#chat_div").chatbox("option", "boxManager").addMsg(data.username, data.message);
-            $.ajax({
-                url: '/Chat/AddChatHistory/',
-                data: { chatMsgId: data.chatMsgId },
-                type: 'POST'
-            });
-        });
-    });
-</script>
 <div id="chat_div"></div>
 
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-<script type="text/javascript" src="@Url.Content("~/Scripts/Stocks/getStocks.js")"></script>
-<link href="@Url.Content("~/CSS/stocks.css")" type="text/css" rel="stylesheet" />
+
 <div class="row-fluid">
 <div class="span4">
     <h2>Web Dashboard News Feed</h2>
 
         <div id="fb-root"></div>
-        <script>    (function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=425510954211693";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
-        <div class="fb-comments" data-href="http://www.se.rit.edu/" data-width="400px" data-num-posts="10"></div>
+        <div class="fb-comments" data-href="http://vm549-6.se.rit.edu/" data-width="400px" data-num-posts="10"></div>
 
 
 

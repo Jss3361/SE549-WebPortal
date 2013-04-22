@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "ChatView";
+}
+
+@model List<Web_Engineering_549.Models.ChatMessage>
+
+
+<div style="margin-left:30px;width:35%;">
+
+    <div>
+        @if (TempData["Message"] != null && !TempData["Message"].Equals(""))
+        {
+        <div class="message">@TempData["Message"]</div>
+        }
+        
+        <div style="float:left">
+            <h2>Chat History</h2>
+        </div>
+
+        <div style="float:right">
+            @using (Html.BeginForm("DeleteChatHistory", "Chat", FormMethod.Post))
+            {
+                <input id="delete" class="btn btn-primary btn-large" type="submit" value="Delete History" />   
+            }
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+
+    @if (Model.Any())
+    {
+        foreach (var msg in Model)
+        {
+            <div class="chat-item">
+                <p><strong>@msg.Author:</strong></p> <p style="word-wrap: break-word;">@msg.ChatMsgText</p> <p><i>@msg.TimeStamp.ToLongDateString() at @msg.TimeStamp.ToShortTimeString()</i></p>
+            </div>
+        }
+    }
+    else
+    {
+        <p>Chat history is empty. Get talking!</p>
+    }
+
+</div>
+
+
