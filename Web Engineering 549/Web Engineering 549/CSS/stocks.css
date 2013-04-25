@@ -5,7 +5,7 @@
     border-color:Silver;
     border-style:solid;
     background-color:white;
-    margin-top:10px;
+    margin-top:0px;
 }
 
 #gainerDiv h4, #loserDiv h4
@@ -85,6 +85,21 @@ svg
 #stockSearchField, #homeStockSearchField
 {
     margin:0px;
+    width:60%;
 }
 
+#stockSearchTable 
+{
+    margin-top:10px;
+    margin-left:0px;
+    text-align:left;
+    width:50%;
+    float:right;
+}
+
+#ownedStocksTable 
+{
+    margin-top:10px;
+    float:left;
+}
 

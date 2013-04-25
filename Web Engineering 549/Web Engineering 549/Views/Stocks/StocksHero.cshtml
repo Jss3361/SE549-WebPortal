@@ -4,16 +4,6 @@
         Here you can view, purchase, and sell stocks.
     </p>
     
-    <table id="stockSearchTable">
-        <tr>
-            <td>Stock Search:</td>
-            <td>
-                <input type="text" id="stockSearchField" />
-            </td>
-            <td><input type="button" value="Search" id="stockSearchButton" onclick="getStockQuote();" /></td>
-        </tr>
-    </table>
-
     <table id="tickerTable">
         <tr>
             <td>
@@ -37,12 +27,35 @@
         </tr>
     </table>
 
-
-    
-    <table id="stockQuoteTable">
+    <table id="ownedStocksTable">
         <tr>
-            <td><div id="resultsDiv"></div></td>
-            <td><div id="graphDiv" style="width:500px; height:400px;"></div></td>
+            <td><div id="ownedStocksDiv"></div></td>
+        </tr>
+        <tr>
+            <td><div id="stockControls">
+                    <input type="button" value="Sell" id="sellStockButton" onclick="sellStock();" />
+                    <input type="button" value="Comment" id="commentStockButton" onclick="commentOnStock();" />
+                </div>
+            </td>
         </tr>
     </table>
+
+    <table id="stockSearchTable">
+        <tr>
+            <td colspan="2">Stock Search:
+                <input type="text" id="stockSearchField" />
+                <input type="button" value="Search" id="stockSearchButton" onclick="getStockQuote();" />
+                <input type="button" value="Buy" id="buyStockButton" onclick="buyStock();" style="display:none" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><div id="resultsDiv"></div></td>
+        </tr>
+        <tr>
+            <td colspan="2"><div id="graphDiv" style="width:200px;height:100px;"></div></td>
+        </tr>
+    </table>
+
+ 
+    
 </div>

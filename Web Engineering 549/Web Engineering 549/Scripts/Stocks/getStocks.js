@@ -3,55 +3,40 @@
 function getStockQuote() {
     
     var symbol = document.getElementById("stockSearchField").value;
-    var url = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quote%20where%20symbol%20%3D%20%22" + symbol + "%22&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback="
-    
-    $.getJSON(url, function (data) {
-        
-        if (data.query.results.quote.Change != null && data.query.results.quote.DaysHigh != null
-            && data.query.results.quote.DaysLow != null) {
-
+    var url = "http://dev.markitondemand.com/Api/Quote/jsonp/";
+    $.ajax({
+        url: url,
+        dataType: "jsonp",
+        data: {
+            symbol: symbol
+        },
+        success: function (data) {
+            console.log(data.Data);
+            
             var result = "<table class='table' id='queryTable'>";
-            result += "<tr><th colspan='2'>" + data.query.results.quote.Name + "</th></tr>";
-            result += "<tr><td>Symbol</td><td>" + data.query.results.quote.symbol + "</td></tr>";
+            result += "<tr><th colspan='2' id='stockName'>" + data.Data.Name + "</th></tr>";
+            result += "<tr><td>Symbol</td><td id='tickerSymbol'>" + data.Data.Symbol + "</td></tr>";
 
-            var change = data.query.results.quote.Change;
-            if (change.indexOf('-') == -1) {
-                result += "<tr><td>Change</td><td style='color:green'>" + change
+            var change = data.Data.Change + "";
+            if (change.indexOf("-") == -1) {
+                result += "<tr><td>Change</td><td style='color:green'>" + data.Data.Change + "</td></tr>";
             }
             else {
-                result += "<tr><td>Change</td><td style='color:red'>" + change + "</td></tr>";
+                result += "<tr><td>Change</td><td style='color:red'>" + data.Data.Change + "</td></tr>";
             }
-            result += "<tr><td>Days High</td><td>$" + data.query.results.quote.DaysHigh + "</td></tr>";
-            result += "<tr><td>Days Low</td><td>$" + data.query.results.quote.DaysLow + "</td></tr>";
-            result += "<tr><td>Days Range</td><td>$" + data.query.results.quote.DaysRange + "</td></tr>";
-            result += "<tr><td>Volume</td><td>" + data.query.results.quote.Volume + "</td></tr>";
-            result += "<tr><td>Last Trade Price</td><td>$" + data.query.results.quote.LastTradePriceOnly + "</td></tr>";
-            result += "<tr><td>Year High</td><td>$" + data.query.results.quote.YearHigh + "</td></tr>";
-            result += "<tr><td>Year Low</td><td>$" + data.query.results.quote.YearLow + "</td></tr></table>";
+            result += "<tr><td>Change Percent</td><td>" + data.Data.ChangePercent + "</td></tr>";
+            result += "<tr><td>Last Price</td><td id='currentPrice'>$" + data.Data.LastPrice + "</td></tr>";
+            result += "<tr><td>Open</td><td>$" + data.Data.Open + "</td></tr>";
+            result += "<tr><td>Days High</td><td>$" + data.Data.High + "</td></tr>";
+            result += "<tr><td>Days Low</td><td>$" + data.Data.Low + "</td></tr>";
+            result += "<tr><td>Volume</td><td>" + data.Data.Volume + "</td></tr>";
+            result += "<tr><td>Market Cap YTD</td><td>" + data.Data.MarketCap + "</td></tr>";
 
-            var stockName = data.query.results.quote.Name;
+            var stockName = data.Data.Name;
 
-            // 2009-09-11
-            var today = new Date();
-            var dd = today.getDate() - 4;
-            var mm = today.getMonth() + 1;
-            var yyyy = today.getFullYear();
-
-            if (dd < 10) {
-                dd = '0' + dd;
-            }
-            if (mm < 10) {
-                mm = '0' + mm;
-            }
-            today = yyyy + '-' + mm + '-' + dd;
-
-            var startDate = (yyyy - 5) + '-' + mm + '-' + dd;
-            var endDate = today;
-
-            
             var chartUrl = "http://dev.markitondemand.com/Api/Timeseries/jsonp/";
             $.ajax({
-                url:chartUrl,
+                url: chartUrl,
                 dataType: "jsonp",
                 data: {
                     symbol: symbol,
@@ -74,7 +59,7 @@ function getStockQuote() {
                         item[0] = data.Data.SeriesDates[i];
                         item[1] = parseFloat(data.Data.Series.close.values[i]);
 
-                        
+
                         preparedData[i + 1] = item;
                     }
                     console.log(preparedData);
@@ -98,15 +83,27 @@ function getStockQuote() {
 
 
             $("#resultsDiv").html(result);
-            
-        }
-        else {
-            var result = "<h4 class='noQuote'>Symbol invalid.  Please enter a valid stock symbol</h4>";
-            $("#resultsDiv").html(result);
-            $("#graphDiv").html("");
+            $("#buyStockButton").css("display","inline");
+        },
+        error: function () {
+            $("chartDiv").html("<h4 class='noChart'>No Chart Available for - " + stockName + "</h4>");
         }
     });
+
 }
+
+
+
+function buyStock() {
+    var symbol = document.getElementById("tickerSymbol").textContent;
+    var name = document.getElementById("stockName").textContent;
+    var price = document.getElementById("currentPrice").textContent;
+
+    console.log("symbol = " + symbol + "<br/>name = " + name + "<br/>price = " + price);
+}
+
+
+
 
 function getStockQuoteOnHome() {
     var symbol = document.getElementById("homeStockSearchField").value;

@@ -16,6 +16,8 @@ namespace Web_Engineering_549.Database
             }
             public DbSet<Account> Account { get; set; }
             public DbSet<ChatMessage> ChatMessage { get; set; }
+            public DbSet<StockComment> StockComment { get; set; }
+            public DbSet<StockTransaction> StockTransaction { get; set; }
 
             protected override void OnModelCreating(DbModelBuilder modelBuilder)
             {
