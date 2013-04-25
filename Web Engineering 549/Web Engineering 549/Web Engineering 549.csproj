@@ -155,6 +155,7 @@
     <Content Include="Scripts\Facebook\sendMessage.js" />
     <Content Include="Scripts\Facebook\updateStatus.js" />
     <Content Include="Scripts\Facebook\uploadPhoto.js" />
+    <Content Include="Scripts\googleAnalytics.js" />
     <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.5.1.js" />
     <Content Include="Scripts\jquery-1.5.1.min.js" />
