@@ -14,10 +14,47 @@ $(document).ready(function() {
     // page is now ready, initialize the calendar...
 
     $('#calendar').fullCalendar({
-        aspectRatio: 3
+        aspectRatio: 3,
+
+        events: [
+
+    ]
+
     });
 
 });
 </script>
 
 <div id='calendar'></div>
+<div>
+<h3>Create a new event</h3>
+<input type="text" runat="server" placeholder="Enter event title" id="eventTitle"/>
+<br />
+<input type="text" runat="server" placeholder="Enter event start date" id="startDate"/>
+
+</div>
+
+
+
+
+<input type="button" onclick="addEvent()" runat="server" value="Create Event"/>
+
+
+
+
+
+
+<script type="text/javascript">
+    function addEvent() {
+        var newEvent = new Object();
+        var startDate = document.getElementById("startDate").value;
+
+        newEvent.title = document.getElementById("eventTitle").value;
+        newEvent.start = new Date(startDate);
+        newEvent.allDay = false;
+        $('#calendar').fullCalendar('renderEvent', newEvent);
+    }
+
+
+
+</script>
