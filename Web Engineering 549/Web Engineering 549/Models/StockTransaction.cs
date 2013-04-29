@@ -9,13 +9,13 @@ namespace Web_Engineering_549.Models
     public class StockTransaction
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public System.Int64 transID { get; set; }
-        public System.Int64 userID { get; set; }
-        public String tickerSymbol { get; set; }
-        public String stockName { get; set; }
-        public int quantity { get; set; }
-        public double rate { get; set; }
-        public DateTime timeStamp { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public System.Int32 Trans_ID { get; set; }
+        public System.Int64 User_ID { get; set; }
+        public String Ticker_Symbol { get; set; }
+        public String Stock_Name { get; set; }
+        public int Quantity { get; set; }
+        public Decimal Rate { get; set; }
+        public DateTime Timestamp { get; set; }
     }
 }

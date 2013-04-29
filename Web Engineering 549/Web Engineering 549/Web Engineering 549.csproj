@@ -94,9 +94,12 @@
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\ChatMessage.cs" />
     <Compile Include="Models\Images.cs" />
+    <Compile Include="Models\StockComment.cs" />
+    <Compile Include="Models\StockTransaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AccountService.cs" />
     <Compile Include="Services\ChatService.cs" />
+    <Compile Include="Services\StockService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\channel.html" />

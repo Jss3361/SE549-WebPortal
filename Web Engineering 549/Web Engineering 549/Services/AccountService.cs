@@ -59,5 +59,27 @@ namespace Web_Engineering_549.Services
         {
             return true;
         }
+
+        public long getUserID(Guid sessionId)
+        {
+            long userid = 0;
+            try
+            {
+                using (var context = new EntityContext())
+                {
+                    var user = context.Account.SingleOrDefault(x => x.sessionID == sessionId);
+                    if (user != null)
+                    {
+                        userid = user.userID;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return userid;
+        }
     }
 }

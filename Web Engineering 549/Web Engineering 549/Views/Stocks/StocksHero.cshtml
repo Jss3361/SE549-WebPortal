@@ -27,9 +27,17 @@
         </tr>
     </table>
 
+    <div class="stockDiv">
     <table id="ownedStocksTable">
         <tr>
-            <td><div id="ownedStocksDiv"></div></td>
+            <td><div id="ownedStocksDiv">
+                    <script type="text/javascript">
+                        $(document).ready(function () {
+                            loadMyStocks();
+                        });
+                    </script>
+                </div>
+            </td>
         </tr>
         <tr>
             <td><div id="stockControls">
@@ -39,7 +47,9 @@
             </td>
         </tr>
     </table>
+    </div>
 
+    <div class="stockDiv">
     <table id="stockSearchTable">
         <tr>
             <td colspan="2">Stock Search:
@@ -55,7 +65,23 @@
             <td colspan="2"><div id="graphDiv" style="width:200px;height:100px;"></div></td>
         </tr>
     </table>
-
+    </div>
  
+    <div id="stockTrans" title="Set Up Your Transaction">
+       <p class="validateTips" style="display:none">All form fields are required.</p>
+        <form id="buyStockForm" style="display:none">
+            <fieldset>
+                <label for="nameOfStock">Stock Name</label>
+                <input type="text" name="nameOfStock" id="nameOfStock" class="text ui-widget-content ui-corner-all" />
+                <label for="ticker">Stock Symbol</label>
+                <input type="text" name="ticker" id="ticker" class="text ui-widget-content ui-corner-all"/>
+                <label for="stockPrice">Stock Price</label>
+                <input type="text" name="stockPrice" id="stockPrice" class="text ui-widget-content ui-corner-all" />
+                <label for="quantityToBuy">Quantity</label>
+                <input type="text" name="quantity" id="quantityToBuy" class="text ui-widget-content ui-corner-all" />
+            </fieldset>
+        </form>
+    </div>
+    <div id="stockConfirmation" title="Confirm Your Transaction"></div>
     
 </div>

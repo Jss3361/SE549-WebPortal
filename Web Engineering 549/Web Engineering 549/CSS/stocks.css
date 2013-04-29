@@ -103,3 +103,25 @@ svg
     float:left;
 }
 
+.stockDiv 
+{
+    width:100%;
+    background-color:grey;
+}
+
+#stockTrans 
+{
+padding:10px;
+}
+
+.ui-dialog-buttonset 
+{
+    width:100%;
+    text-align:center;
+}
+
+.ui-widget-overlay 
+{
+    background-color:grey;
+    opacity:0.9;
+}

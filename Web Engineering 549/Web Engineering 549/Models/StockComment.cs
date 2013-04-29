@@ -9,11 +9,11 @@ namespace Web_Engineering_549.Models
     public class StockComment
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public System.Int64 ID { get; set; }
-        public System.Int64 userID { get; set; }
-        public String stock { get; set; }
-        public String comment { get; set; }
-        public DateTime timestamp { get; set; }
+        public System.Int64 User_ID { get; set; }
+        public String Stock { get; set; }
+        public String Comment { get; set; }
+        public DateTime Timestamp { get; set; }
     }
 }

@@ -1,5 +1,22 @@
 ﻿google.load('visualization', '1.0', { 'packages': ['corechart'] });
 
+/*$(document).ready(function () {
+    loadMyStocks();
+});
+*/
+
+function loadMyStocks() {
+    $.ajax({
+        url: '/Stocks/GetAllTransactions',
+        dataType: "json",
+        type: "post",
+        sucess: function (data) {
+            console.log(data);
+        }
+    });
+}
+
+
 function getStockQuote() {
     
     var symbol = document.getElementById("stockSearchField").value;
@@ -99,10 +116,68 @@ function buyStock() {
     var name = document.getElementById("stockName").textContent;
     var price = document.getElementById("currentPrice").textContent;
 
-    console.log("symbol = " + symbol + "<br/>name = " + name + "<br/>price = " + price);
+    $("#buyStockForm").css("display", "inline");
+    $("#validateTips").css("display", "inline");
+
+    $("#nameOfStock").attr("value", name).attr("readonly",true);
+    $("#ticker").attr("value",symbol).attr("readonly",true);
+    $("#stockPrice").attr("value",price).attr("readonly",true);
+
+    //$("#stockTrans").removeClass();
+    $("#stockTrans").dialog({
+        resizable: false,
+        width:250,
+        modal: true,
+        buttons: {
+            "Purchase": function () {
+                if (validateQuantity($("#quantityToBuy").val())) {
+                    var quantity = $("#quantityToBuy").val();
+                    $(this).dialog("close");
+                    purchaseStock(symbol, name, price, quantity);
+                    document.getElementsByTagName("body").removeChild(document.getElementById("stockTrans"));
+                }
+                else {
+                    alert("invalid quantity");
+                }
+                
+
+            },
+            Cancel: function () {
+                $(this).dialog("close");
+            }
+        }
+    });
+   
 }
 
+function validateQuantity(quantity) {
+    console.log("quantity = " + quantity);
+    var pattern = /^\d+$/i;
 
+    if (quantity.length > 0 && parseInt(quantity) > 0 && quantity.match(pattern)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+    
+}
+
+function purchaseStock(symbol, name, price, quantity) {
+    price = price.replace("$", "");
+    console.log("purchasing stock");
+    $.ajax({
+        url: '/Stocks/SaveBuyTransaction',
+        data: {
+            stockName: name,
+            stockTicker: symbol,
+            quantity: quantity,
+            rate : price
+        },
+        type: "post",
+        
+    });
+}
 
 
 function getStockQuoteOnHome() {
