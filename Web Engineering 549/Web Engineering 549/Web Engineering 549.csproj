@@ -228,7 +228,6 @@
   <ItemGroup>
     <Content Include="Views\Calendar\Calendar.cshtml" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="Views\Stocks\StocksHero.cshtml" />
   </ItemGroup>
