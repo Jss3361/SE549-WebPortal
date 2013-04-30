@@ -92,12 +92,14 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\CalendarEvent.cs" />
     <Compile Include="Models\ChatMessage.cs" />
     <Compile Include="Models\Images.cs" />
     <Compile Include="Models\StockComment.cs" />
     <Compile Include="Models\StockTransaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AccountService.cs" />
+    <Compile Include="Services\CalendarService.cs" />
     <Compile Include="Services\ChatService.cs" />
     <Compile Include="Services\StockService.cs" />
   </ItemGroup>
@@ -177,6 +179,7 @@
     <Content Include="Scripts\Stocks\getStocks.js" />
     <Content Include="Scripts\Stocks\homeStockAutoComplete.js" />
     <Content Include="Scripts\Stocks\stockAutoComplete.js" />
+    <Content Include="Scripts\Stocks\transactions.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -225,12 +228,14 @@
   <ItemGroup>
     <Content Include="Views\Calendar\Calendar.cshtml" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="Views\Stocks\StocksHero.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Facebook\PhotoUploadForm.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Stocks\Transactions.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
