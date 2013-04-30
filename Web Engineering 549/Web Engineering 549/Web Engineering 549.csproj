@@ -131,6 +131,7 @@
     <Content Include="Content\themes\base\jquery.ui.slider.css" />
     <Content Include="Content\themes\base\jquery.ui.tabs.css" />
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="CSS\bootstrap-fileupload.min.css" />
     <Content Include="CSS\bootstrap-responsive.css" />
     <Content Include="CSS\bootstrap-responsive.min.css" />
     <Content Include="CSS\bootstrap.css" />
@@ -148,6 +149,7 @@
     <Content Include="images\gw001.jpg" />
     <Content Include="images\gw002.jpg" />
     <Content Include="Scripts\Account\fbNewsFeed.js" />
+    <Content Include="Scripts\bootstrap-fileupload.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Calendar\fullcalendar.js" />
@@ -213,9 +215,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\UserControls\PrimaryNav.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Facebook\FacebookHero.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Stocks\Stocks.cshtml" />
