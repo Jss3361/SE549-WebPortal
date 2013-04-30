@@ -45,10 +45,38 @@ namespace Web_Engineering_549.Controllers
             return new EmptyResult();
         }
 
+
+        public List<StockTransaction> combineSameStockTransactions(List<StockTransaction> trans)
+        {
+            List<StockTransaction> result = new List<StockTransaction>();
+
+            for (int i = 0; i < trans.Count; i++)
+            {
+                for (int j = i + 1; j < trans.Count; j++)
+                {
+                    if (trans.ElementAt(i).Stock_Name == trans.ElementAt(j).Stock_Name)
+                    {
+                        StockTransaction trans1 = trans.ElementAt(i);
+                        StockTransaction trans2 = trans.ElementAt(j);
+
+                        StockTransaction combined = new StockTransaction();
+                        combined.Stock_Name = trans1.Stock_Name;
+                        combined.Ticker_Symbol = trans1.Ticker_Symbol;
+                        combined.Quantity = trans1.Quantity + trans2.Quantity;
+                        combined.Rate = trans1.Rate;
+                    }
+                }
+            }
+
+            return result;
+        }
+
         public ActionResult GetAllTransactions()
         {
             HttpCookie cookie = Request.Cookies["SESSION_ID"];
             List<StockTransaction> transactions = stockService.GetAllTransactions(accountService.getUserID(new Guid(cookie.Value)));
+
+           // transactions = combineSameStockTransactions(transactions);
 
             JsonResult result = new JsonResult();
             result.Data = transactions;
