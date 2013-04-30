@@ -12,9 +12,108 @@ function loadMyStocks() {
         type: "post",
         success: function (data) {
             console.log(data);
-            updateCurrentStockTable(data);
+            if (data.length > 0) {
+                updateCurrentStockTable(data);
+            }
         }
     });
+
+    function loadStockTransactions() {
+        $.ajax({
+            url: '/Stocks/GetAllTransactions',
+            dataType: "json",
+            type: "post",
+            success: function (data) {
+                if (data.length > 0) {
+                    displayTransactions(data);
+                }
+                else {
+                    $("#stockTransactionsDiv").html("<h3 class='no-transactions-message'>No Transactions Currently Saved</h3>");
+                }
+            }
+        });
+    }
+
+    function displayTransactions(data) {
+        var table = document.createElement("table");
+        table.setAttribute("id", "stockTransactionsTable");
+     
+
+        var headerRow = document.createElement("tr");
+
+        var transactionType = document.createElement("th");
+        transactionType.appendChild(document.createTextNode("Transaction Type"));
+
+        var stockName = document.createElement("th");
+        stockName.appendChild(document.createTextNode("Stock Name"));
+
+        var stockSymbol = document.createElement("th");
+        stockSymbol.appendChild(document.createTextNode("Ticker Symbol"));
+
+        var quantityOwned = document.createElement("th");
+        quantityOwned.appendChild(document.createTextNode("Quantity Owned"));
+
+        var price = document.createElement("th");
+        price.appendChild(document.createTextNode("Transaction Price"));
+
+        var transactionDate = document.createElement("th");
+        transactionDate.appendChild(document.createTextNode("Transaction Date/Time"));
+
+        headerRow.appendChild(transactionType);
+        headerRow.appendChild(stockName);
+        headerRow.appendChild(stockSymbol);
+        headerRow.appendChild(quantityOwned);
+        headerRow.appendChild(price);
+        headerRow.appendChild(transactionDate);
+
+
+        table.appendChild(headerRow);
+
+        for (var i = 0; i < data.length; i++) {
+            console.log(data[i].Stock_Name);
+
+            var currentRow = document.createElement("tr");
+
+            var name = document.createElement("td");
+            name.appendChild(document.createTextNode(data[i].Stock_Name));
+
+            var symbol = document.createElement("td");
+            symbol.appendChild(document.createTextNode(data[i].Ticker_Symbol));
+
+            var quantity = document.createElement("td");
+            quantity.appendChild(document.createTextNode(data[i].Quantity));
+
+            var transPrice = data[i].Rate;
+
+            if (transPrice.indexOf("-") == -1){
+                var type = document.createElement("td");
+                type.appendChild(document.createTextNode("Buy"));
+            }
+            else{
+                var type = document.createElement("td");
+                type.appendChild(document.createTextNode("Sell"));
+            }
+
+            transPrice.replace("-","");
+            
+            var rate = document.createElement("td");
+            rate.appendChild(document.createTextNode("$" + transPrice));
+
+            var date = document.createElement("td");
+            date.appendChild(document.createTextNode(data[i].Timestamp));
+
+            currentRow.appendChild(type);
+            currentRow.appendChild(name);
+            currentRow.appendChild(symbol);
+            currentRow.appendChild(quantity);
+            currentRow.appendChild(rate);
+            currentRow.appendChild(date);
+
+            table.appendChild(currentRow);
+        }
+        $("#stockTransactionsDiv").html("");
+        document.getElementById("stockTransactionsDiv").appendChild(table);
+    }
 }
 
 function updateCurrentStockTable(data) {
@@ -129,7 +228,7 @@ function sellStock(row) {
         modal: true,
         buttons: {
             "Sell": function () {
-                if (validateSellQuantity($("#quantityToBuy").val()),currentQuantity) {
+                if (validateSellQuantity($("#quantityToBuy").val(),currentQuantity)) {
                     var quantity = $("#quantityToBuy").val();
                     $(this).dialog("close");
                     sellOffStock(symbol, name, price, quantity);
@@ -252,7 +351,7 @@ function sellStock(row) {
     function buyStock(stock) {
         console.log("stock = " + stock);
 
-        if (stock == "undefined") {
+        if (typeof stock == 'undefined') {
             var symbol = document.getElementById("tickerSymbol").textContent;
             var name = document.getElementById("stockName").textContent;
             var price = document.getElementById("currentPrice").textContent;
@@ -261,8 +360,8 @@ function sellStock(row) {
             var tableRow = $("#ownedStocksTable").find("tr").eq(stock + 1);
             var data = tableRow[0].childNodes;
 
-            var symbol = data[0].textContent;
-            var name = data[1].textContent;
+            var symbol = data[1].textContent;
+            var name = data[0].textContent;
             var price = data[3].textContent;
         }
 
@@ -283,7 +382,7 @@ function sellStock(row) {
                         var quantity = $("#quantityToBuy").val();
                         $(this).dialog("close");
                         purchaseStock(symbol, name, price, quantity);
-                        document.getElementsByTagName("body").removeChild(document.getElementById("stockTrans"));
+                        document.getElementsByTagName("body")[0].removeChild(document.getElementById("stockTrans"));
                     }
                     else {
                         alert("invalid quantity");

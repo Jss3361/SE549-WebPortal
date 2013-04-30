@@ -27,6 +27,12 @@ namespace Web_Engineering_549.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult Transactions()
+        {
+            return View();
+        }
+
         public ActionResult SaveBuyTransaction(String stockName, String stockTicker, int quantity, double rate)
         {
             StockTransaction trans = new StockTransaction();
@@ -76,7 +82,8 @@ namespace Web_Engineering_549.Controllers
             HttpCookie cookie = Request.Cookies["SESSION_ID"];
             List<StockTransaction> transactions = stockService.GetAllTransactions(accountService.getUserID(new Guid(cookie.Value)));
 
-           // transactions = combineSameStockTransactions(transactions);
+            
+           
 
             JsonResult result = new JsonResult();
             result.Data = transactions;
