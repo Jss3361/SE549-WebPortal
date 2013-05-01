@@ -550,3 +550,16 @@ function sellStock(row) {
    
 
 
+    function loadTopFiveStocks() {
+        $.ajax({
+            url: '/Stocks/GetTopFiveStocks',
+            dataType: "json",
+            type: "post",
+            success: function (data) {
+                console.log(data);
+                for (var key in data) {
+                    $("#topStockBody").append("<tr><td>" + key + "</td><td>fillerprice</td><td>fillerchange</td><td>" + data[key] + "</td></tr>");
+                }
+            }
+        });
+    }

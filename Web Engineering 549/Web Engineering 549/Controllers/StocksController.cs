@@ -97,6 +97,18 @@ namespace Web_Engineering_549.Controllers
             return result;
         }
 
+        public ActionResult GetTopFiveStocks()
+        {
+            HttpCookie cookie = Request.Cookies["SESSION_ID"];
+            Dictionary<string, int> topFiveStocks = stockService.GetTopFiveStocks(accountService.getUserID(new Guid(cookie.Value)));
+
+            JsonResult result = new JsonResult();
+            result.Data = topFiveStocks;
+
+            // To Do : finish this method
+            return result;
+        }
+
         public ActionResult GetOwnedStocks()
         {
             // To Do: finish this method

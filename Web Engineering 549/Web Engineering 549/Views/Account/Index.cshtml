@@ -45,42 +45,19 @@ setTimeout('document.getElementById(\'scrnewsblock80030906\').src = (document.lo
         <div id="stocksDiv">
             <h4>Top 5 Stocks</h4>
             <table id="topStockTable" class="table">
-                <tr>
-                    <td>Symbol</td>
-                    <td>Last Price</td>
-                    <td>Change</td>
-                    <td>Shares</td>
-                </tr>
-                <tr>
-                    <td>AAPL</td>
-                    <td>428.35</td>
-                    <td>0.00 (0.00%)</td>
-                    <td>20</td>
-                </tr>
-                <tr>
-                    <td>MSFT</td>
-                    <td>27.92</td>
-                    <td>0.00 (0.00%)</td>
-                    <td>15</td>
-                </tr>
-                <tr>
-                    <td>F</td>
-                    <td>13.40</td>
-                    <td>0.00 (0.00%)</td>
-                    <td>44</td>
-                </tr>
-                <tr>
-                    <td>GM</td>
-                    <td>152.00</td>
-                    <td>0.00 (0.00%)</td>
-                    <td>152</td>
-                </tr>
-                <tr>
-                    <td>IBM</td>
-                    <td>406.00</td>
-                    <td>0.00 (0.00%)</td>
-                    <td>406</td>
-                </tr>
+                <thead>
+                    <tr>
+                        <td>Symbol</td>
+                        <td>Last Price</td>
+                        <td>Change</td>
+                        <td>Shares</td>
+                    </tr>
+                </thead>
+                <tbody id="topStockBody">
+                    <script type="text/javascript">
+                        loadTopFiveStocks();
+                    </script>
+                </tbody>
             </table>
             <div>
                 @using (Html.BeginForm("Stocks", "Stocks", FormMethod.Get))

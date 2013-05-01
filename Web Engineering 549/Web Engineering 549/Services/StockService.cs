@@ -81,6 +81,30 @@ namespace Web_Engineering_549.Services
 
 
 
-        
+        public Dictionary<string, int> GetTopFiveStocks(long userid)
+        {
+            List<StockTransaction> transactions = new List<StockTransaction>();
+            Dictionary<string, int> topFiveStocks = new Dictionary<string, int>();
+
+            try
+            {
+                using (var context = new EntityContext())
+                {
+                    transactions = context.StockTransaction.ToList();
+                    var grouped = (from s in transactions
+                                  group s by s.Ticker_Symbol into g
+                                  select new { TickerSymbol = g.Key, TotalCount = g.Sum(s => s.Quantity) }).OrderByDescending(i => i.TotalCount).Take(5);
+                    foreach(var ele in grouped)
+                    {
+                        topFiveStocks.Add(ele.TickerSymbol, ele.TotalCount);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return topFiveStocks;
+        }
     }
 }
