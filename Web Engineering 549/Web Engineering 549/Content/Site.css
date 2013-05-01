@@ -91,10 +91,37 @@ textarea
 
 .chat-item
 {
-    background-color: #dbe2f3;
+    background-color: #eee;
     border-style:solid;
     border-width:1px;
-    border-color: Black;
-    margin-bottom:2px;
+    border-color: #ccc;
+    margin-bottom:10px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    -webkit-box-shadow: 1px 1px 1px 1px #ccc;
+    box-shadow: 1px 1px 1px 1px #ccc;
+    padding:8px;
+    font-size:0.9em; 
     
+}
+
+.chat-author
+{
+    font-weight:bold;
+}
+
+.chat-text
+{
+    word-wrap: break-word;
+    margin:0;
+    color:Navy;
+}
+
+.chat-time
+{
+    font-size:0.9em;
+    font-style:italic;
+    color:#777;
+    float:right;
 }

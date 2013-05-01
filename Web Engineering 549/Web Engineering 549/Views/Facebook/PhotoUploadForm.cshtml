@@ -9,7 +9,7 @@
         <div style="float:left" class="fileupload fileupload-new" data-provides="fileupload">
             <div class="input-append">
                 <div class="uneditable-input span3">
-                    <i class="icon-file fileupload-exists"></i> <span class="fileupload-preview"></span></div><span class="btn btn-file"><span class="fileupload-new">Select file</span><span class="fileupload-exists">Change</span><input type="file" /></span><a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+                    <i class="icon-file fileupload-exists"></i> <span class="fileupload-preview"></span></div><span class="btn btn-file"><span class="fileupload-new">Select file</span><span class="fileupload-exists">Change</span><input type="file" name="file"/></span><a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
                 </div>
         </div>
 
@@ -23,7 +23,14 @@
 }
 
 <div>
-<h5>Add Photos to Facebook</h5>
+@if (Model.images.Any())
+{
+    <h4>Add Photos to Facebook</h4>
+}
+else
+{
+    <h4>No photos have been uploaded.</h4>
+}
  @foreach (var image in Model.images)
  {  
     <div style="margin:3px"><img style="border-style:solid;border-width:1.5px;border-color:Black;margin-right: 8px" src="@image.ToString()" alt="Smiley face" height="80" width="80" /><a class="btn btn-large btn-success uploadPhoto" href="#">Add now</a></div>

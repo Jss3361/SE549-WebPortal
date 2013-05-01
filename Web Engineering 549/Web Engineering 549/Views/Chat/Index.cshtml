@@ -10,7 +10,10 @@
     <div>
         @if (TempData["Message"] != null && !TempData["Message"].Equals(""))
         {
-        <div class="message">@TempData["Message"]</div>
+            <div class="alert">
+                <a class="close" data-dismiss="alert">&times;</a>
+                @TempData["Message"]
+            </div>
         }
         
         <div style="float:left">
@@ -31,7 +34,11 @@
         foreach (var msg in Model)
         {
             <div class="chat-item">
-                <p><strong>@msg.Author:</strong></p> <p style="word-wrap: break-word;">@msg.ChatMsgText</p> <p><i>@msg.TimeStamp.ToLongDateString() at @msg.TimeStamp.ToShortTimeString()</i></p>
+                <div>
+                    <span class="chat-author">@msg.Author</span>
+                    <span class="chat-time">@msg.TimeStamp.ToLongDateString() at @msg.TimeStamp.ToShortTimeString()</span>
+                </div> 
+                <p class="chat-text" >@msg.ChatMsgText</p>
             </div>
         }
     }
