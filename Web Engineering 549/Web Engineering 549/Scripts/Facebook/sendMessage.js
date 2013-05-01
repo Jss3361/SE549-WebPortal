@@ -3,7 +3,7 @@
     var link = document.getElementById('linkBox').value;
 
     if(link === "") {
-        $("#fb_errors").append('<div class="alert"><a class="close" data-dismiss="alert">&times;</a>Please enter a link.');
+        $("#fb_errors").append('<div class="alert alert-error"><a class="close" data-dismiss="alert">&times;</a>Please enter a link.');
         return
     }
 

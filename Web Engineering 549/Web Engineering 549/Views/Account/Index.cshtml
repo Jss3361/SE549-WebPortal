@@ -13,6 +13,7 @@
 <script src="https://www.google.com/jsapi" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/Stocks/getStocks.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/Account/fbNewsFeed.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/Account/stockSearch.js")" type="text/javascript"></script>
 
 <div id="chat_div"></div>
 
@@ -86,7 +87,7 @@ setTimeout('document.getElementById(\'scrnewsblock80030906\').src = (document.lo
                 @using (Html.BeginForm("Stocks", "Stocks", FormMethod.Get))
                 {
                     <input style="float:left;width:25%;margin-right:5px;margin-left:5px" type="text" name="stockTicker" id="homeStockSearchField" placeholder="ticker symbol"/>
-                    <button style="float:left" class="btn btn-medium btn-primary" type="submit">Search</button>
+                    <button id="stockSearch" style="float:left" class="btn btn-medium btn-primary" type="submit">Search</button>
                 }
             </div>
             <div id="stockResultsDiv">
