@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Web_Engineering_549.Services;
 using Web_Engineering_549.Models;
+using Web_Engineering_549.ViewModels;
 
 namespace Web_Engineering_549.Controllers
 {
@@ -22,9 +23,13 @@ namespace Web_Engineering_549.Controllers
         }
 
         [HttpGet]
-        public ActionResult Stocks()
+        public ActionResult Stocks(string stockTicker)
         {
-            return View();
+            var model = new StockIndexViewModel()
+            {
+                stockTicker = stockTicker ?? null
+            };
+            return View(model);
         }
 
         [HttpGet]

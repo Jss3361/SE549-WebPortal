@@ -1,4 +1,6 @@
-﻿<div class="hero-unit">
+﻿@model Web_Engineering_549.ViewModels.StockIndexViewModel
+
+<div class="hero-unit">
     <h1>Welcome to the Stock Portal!</h1>
     <p>
         Here you can view, purchase, and sell stocks.
@@ -51,7 +53,14 @@
     <table id="stockSearchTable">
         <tr>
             <td colspan="2">Stock Search:
-                <input type="text" id="stockSearchField" />
+                @if (Model.stockTicker != null)
+                {
+                    <input type="text" id="stockSearchField" value="@Model.stockTicker"/>
+                }
+                else
+                {
+                    <input type="text" id="stockSearchField" />
+                }
                 <input type="button" value="Search" id="stockSearchButton" onclick="getStockQuote();" />
                 <input type="button" value="Buy" id="buyStockButton" onclick="buyStock();" style="display:none" />
             </td>

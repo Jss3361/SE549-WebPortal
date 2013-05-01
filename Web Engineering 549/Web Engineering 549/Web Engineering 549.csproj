@@ -102,6 +102,7 @@
     <Compile Include="Services\CalendarService.cs" />
     <Compile Include="Services\ChatService.cs" />
     <Compile Include="Services\StockService.cs" />
+    <Compile Include="ViewModels\StockIndexViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\channel.html" />

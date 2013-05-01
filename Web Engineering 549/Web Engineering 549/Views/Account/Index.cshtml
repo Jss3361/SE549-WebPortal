@@ -19,7 +19,7 @@
 
 <div class="row-fluid">
 <div class="span4">
-    <h2>Web Dashboard News Feed</h2>
+    <h2>Web Dashboard Comments</h2>
 
         <div id="fb-root"></div>
         <div class="fb-comments" data-href="http://vm549-6.se.rit.edu/" data-width="400px" data-num-posts="10"></div>
@@ -82,15 +82,13 @@ setTimeout('document.getElementById(\'scrnewsblock80030906\').src = (document.lo
                     <td>406</td>
                 </tr>
             </table>
-            <table id="homeStockSearchTable">
-                <tr>
-                    <td>Stock Search:</td>
-                    <td>
-                        <input type="text" id="homeStockSearchField" onkeydown="autoCompleteSymbol(this);" /></td>
-                    <td>
-                        <input type="button" value="Search" id="homeStockSearchButton" onclick="getStockQuoteOnHome();" /></td>
-                </tr>
-            </table>
+            <div>
+                @using (Html.BeginForm("Stocks", "Stocks", FormMethod.Get))
+                {
+                    <input style="float:left;width:25%;margin-right:5px;margin-left:5px" type="text" name="stockTicker" id="homeStockSearchField" placeholder="ticker symbol"/>
+                    <button style="float:left" class="btn btn-medium btn-primary" type="submit">Search</button>
+                }
+            </div>
             <div id="stockResultsDiv">
                 <div id="stockQuoteDiv"></div>
                 <div id="stockChartDiv"></div>
