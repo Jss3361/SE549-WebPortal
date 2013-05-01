@@ -8,6 +8,30 @@
     margin-top:0px;
 }
 
+
+
+#chartDiv 
+{
+position:absolute;
+right:4%;
+top:21.5%;
+}
+
+#queryTable 
+{
+    width:50%;
+    border-style:solid;
+    border-radius:6px;
+    border-width:2px;
+    border-color:Silver;
+    background-color:white;
+}
+
+#queryTable th, #quoteTable th
+{
+    font-size:28px;
+}
+
 #gainerDiv h4, #loserDiv h4
 {
     margin-left:6px;
@@ -16,6 +40,7 @@
 #tickerTable, #stockQuoteTable
 {
     width:100%;
+    margin-bottom:5%;
 }
 
 #tickerTable td, #stockQuoteTable td
@@ -34,15 +59,7 @@
     background: white url('images/small_loading.gif') right center no-repeat;
 }
 
-#queryTable 
-{
-    width:100%;
-    border-style:solid;
-    border-radius:6px;
-    border-width:2px;
-    border-color:Silver;
-    background-color:white;
-}
+
 
 svg 
 {
@@ -77,16 +94,25 @@ svg
     margin-top:8px;
 }
 
-#queryTable th, #quoteTable th
-{
-    font-size:28px;
-}
 
-#stockSearchField, #homeStockSearchField
+
+#stockSearchField
 {
     margin:0px;
-    width:60%;
+    width:30%;
 }
+
+#homeStockSearchField 
+{
+margin:0px;
+width:275px;
+}
+
+#homeStockSearchTable 
+{
+
+}
+
 
 #stockSearchTable 
 {
@@ -106,7 +132,8 @@ svg
 .stockDiv 
 {
     width:100%;
-    background-color:grey;
+    text-align:center;
+    margin-top:5%;
 }
 
 #stockTrans 
@@ -149,4 +176,29 @@ border-width:2px;
 border-color:Silver;
 background-color:white;
 text-align:center;
+}
+
+#mainStockDiv 
+{
+padding-top:1%;
+}
+
+.stockText 
+{
+text-align:center;
+}
+
+#buyStockButton 
+{
+margin-left:2%;
+}
+
+#stockControls 
+{
+margin-bottom:2%;
+}
+
+.viewStocksLink 
+{
+font-size:20px;
 }

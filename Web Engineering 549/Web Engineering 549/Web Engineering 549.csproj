@@ -150,6 +150,7 @@
     <Content Include="Scripts\Account\facebookLogin.js" />
     <Content Include="Scripts\Account\facebookLogout.js" />
     <Content Include="Scripts\Account\fbNewsFeed.js" />
+    <Content Include="Scripts\Account\stockSearch.js" />
     <Content Include="Scripts\bootstrap-fileupload.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -178,6 +179,7 @@
     <Content Include="Scripts\Stocks\getStocks.js" />
     <Content Include="Scripts\Stocks\homeStockAutoComplete.js" />
     <Content Include="Scripts\Stocks\stockAutoComplete.js" />
+    <Content Include="Scripts\Stocks\stockInfo.js" />
     <Content Include="Scripts\Stocks\transactions.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -237,6 +239,10 @@
     <Content Include="Views\Stocks\Transactions.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Views\Stocks\StockInfo.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Stocks\StocksOwned.cshtml" />
     <Folder Include="images\" />
   </ItemGroup>
   <PropertyGroup>

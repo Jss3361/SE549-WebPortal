@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "StockInfo";
+}
+
+<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" type="text/javascript"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<link href="@Url.Content("~/CSS/stocks.css")" type="text/css" rel="stylesheet" />
+<link href="@Url.Content("~/Content/themes/base/jquery.ui.core.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/Content/themes/base/jquery.ui.theme.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/Content/themes/base/jquery.ui.dialog.css")" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="@Url.Content("~/Scripts/Stocks/stockInfo.js")"></script>
+
+<div class="hero-unit">
+    <div id="stockControls">
+        <a href="Stocks"><< Back</a>
+        <!--<a onclick="buyStock()">Buy Stock</a> -->
+        <button id="buyStockButton" onclick="buyStock()" >Buy Stock</button>
+    </div>
+<div id="stockInfoDiv">
+    <div id="resultsDiv"></div>
+    <div id="chartDiv"></div>
+</div>
+<div id="commentDiv">
+    <textarea id="commentArea"></textarea>
+    <br />
+    <button id="saveCommentButton" onclick="">Save Comment</button>
+    <button id="editCommentButton" onclick="">Edit Comment</button>
+</div>
+
+<div id="stockTrans" title="Set Up Your Transaction">
+       <p class="validateTips" style="display:none">All form fields are required.</p>
+        <form id="buyStockForm" style="display:none">
+            <fieldset>
+                <label for="nameOfStock">Stock Name</label>
+                <input type="text" name="nameOfStock" id="nameOfStock" class="text ui-widget-content ui-corner-all" />
+                <label for="ticker">Stock Symbol</label>
+                <input type="text" name="ticker" id="ticker" class="text ui-widget-content ui-corner-all"/>
+                <label for="stockPrice">Stock Price</label>
+                <input type="text" name="stockPrice" id="stockPrice" class="text ui-widget-content ui-corner-all" />
+                <label for="quantityToBuy">Quantity</label>
+                <input type="text" name="quantity" id="quantityToBuy" class="text ui-widget-content ui-corner-all" />
+            </fieldset>
+        </form>
+    </div>
+
+
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        getStockQuote();
+    });
+</script>
+
