@@ -1,12 +1,5 @@
-﻿<div class="hero-unit">
-    <h1>Welcome to the Stock Portal!</h1>
-    <p>
-        Here you can view, purchase, and sell stocks.
-    </p>
+﻿<div class="hero-unit" id="mainStockDiv">
     
-    <h3><a href="Transactions">View All Transactions</a></h3>
-
-
     <table id="tickerTable">
         <tr>
             <td>
@@ -29,43 +22,24 @@
             </td>
         </tr>
     </table>
-
+    
+    <h1 class="stockText">Welcome to the Stock Portal!</h1>
+    <p class="stockText">
+        Here you can search stock information and request your stock transaction history.
+    </p>
+    
     <div class="stockDiv">
-    <table id="ownedStocksTable">
-        <tr>
-            <td><div id="ownedStocksDiv">
-                    <script type="text/javascript">
-                        $(document).ready(function () {
-                            loadMyStocks();
-                        });
-                    </script>
-                </div>
-            </td>
-        </tr>
-        <tr>
-        </tr>
-    </table>
-    </div>
-
-    <div class="stockDiv">
-    <table id="stockSearchTable">
-        <tr>
-            <td colspan="2">Stock Search:
-                <input type="text" id="stockSearchField" />
-                <input type="button" value="Search" id="stockSearchButton" onclick="getStockQuote();" />
-                <input type="button" value="Buy" id="buyStockButton" onclick="buyStock();" style="display:none" />
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2"><div id="resultsDiv"></div></td>
-        </tr>
-        <tr>
-            <td colspan="2"><div id="graphDiv" style="width:200px;height:100px;"></div></td>
-        </tr>
-    </table>
+        Stock Search:
+        <input type="text" id="stockSearchField" />
+        <input type="button" value="Search" id="stockSearchButton" onclick="goToStockInfoPage();" />
+        <br />
+        <br />
+        <a href="Transactions" class="viewStocksLink">View All Transactions</a> 
+        |
+        <a href="StocksOwned" class="viewStocksLink">View My Stocks</a>       
     </div>
  
-    <div id="stockTrans" title="Set Up Your Transaction">
+    <!--<div id="stockTrans" title="Set Up Your Transaction">
        <p class="validateTips" style="display:none">All form fields are required.</p>
         <form id="buyStockForm" style="display:none">
             <fieldset>
@@ -79,7 +53,6 @@
                 <input type="text" name="quantity" id="quantityToBuy" class="text ui-widget-content ui-corner-all" />
             </fieldset>
         </form>
-    </div>
-    <div id="stockConfirmation" title="Confirm Your Transaction"></div>
+    </div>-->
     
 </div>

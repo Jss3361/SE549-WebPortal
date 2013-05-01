@@ -1,20 +1,7 @@
-﻿/*(function() {
+﻿$(function () {
+    console.log($("#homeStockSearchField"));
 
-    if ('jQuery' in window) loadAutocomplete();
-    else {
-        var t = setInterval(function() { // Run poller
-            if ('jQuery' in window) {
-                loadAutocomplete();
-                clearInterval(t);        // Stop poller
-            }
-        }, 50);
-    }
-})();
-
-
-function loadAutocomplete() {
-    console.log($(".searchField"));
-    $(".searchField").autocomplete({
+    $("#homeStockSearchField").autocomplete({
         source: function (request, response) {
             $.ajax({
                 url: "http://dev.markitondemand.com/Api/Lookup/jsonp/",
@@ -41,6 +28,4 @@ function loadAutocomplete() {
             $(this).removeClass("ui-corner-top").addClass("ui-corner-all");
         }
     });
-
-
-}*/
+});

@@ -177,6 +177,7 @@
     <Content Include="Scripts\Stocks\getStocks.js" />
     <Content Include="Scripts\Stocks\homeStockAutoComplete.js" />
     <Content Include="Scripts\Stocks\stockAutoComplete.js" />
+    <Content Include="Scripts\Stocks\stockInfo.js" />
     <Content Include="Scripts\Stocks\transactions.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -237,6 +238,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Stocks\Transactions.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Stocks\StockInfo.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Stocks\StocksOwned.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
