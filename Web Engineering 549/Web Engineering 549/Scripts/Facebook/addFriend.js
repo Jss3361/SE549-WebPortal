@@ -3,7 +3,7 @@
     var friendID = document.getElementById('idBox').value;
 
     if (friendID === "") {
-        $('#fb_errors').append('<div class="alert"><a class="close" data-dismiss="alert">&times;</a>Please enter a friend id.</div>');
+        $('#fb_errors').append('<div class="alert alert-error"><a class="close" data-dismiss="alert">&times;</a>Please enter a friend id.</div>');
         return;    
     }
     
