@@ -102,6 +102,7 @@
     <Compile Include="Services\CalendarService.cs" />
     <Compile Include="Services\ChatService.cs" />
     <Compile Include="Services\StockService.cs" />
+    <Compile Include="ViewModels\StockIndexViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\channel.html" />
@@ -133,6 +134,7 @@
     <Content Include="Content\themes\base\jquery.ui.slider.css" />
     <Content Include="Content\themes\base\jquery.ui.tabs.css" />
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="CSS\bootstrap-fileupload.min.css" />
     <Content Include="CSS\bootstrap-responsive.css" />
     <Content Include="CSS\bootstrap-responsive.min.css" />
     <Content Include="CSS\bootstrap.css" />
@@ -147,9 +149,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\Account\facebookLogin.js" />
     <Content Include="Scripts\Account\facebookLogout.js" />
-    <Content Include="images\gw001.jpg" />
-    <Content Include="images\gw002.jpg" />
     <Content Include="Scripts\Account\fbNewsFeed.js" />
+    <Content Include="Scripts\bootstrap-fileupload.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Calendar\fullcalendar.js" />
@@ -219,9 +220,6 @@
     <Content Include="Views\UserControls\PrimaryNav.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Facebook\FacebookHero.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Stocks\Stocks.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -244,6 +242,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Stocks\StocksOwned.cshtml" />
+    <Folder Include="images\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

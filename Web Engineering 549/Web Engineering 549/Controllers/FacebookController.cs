@@ -35,11 +35,14 @@ namespace Web_Engineering_549.Controllers
         [Authenticate]
         [HttpPost]
         public ActionResult PhotoUpload(HttpPostedFileBase file)
-        {      
-            var fileName = Path.GetFileName(file.FileName);             
-            var path = Path.Combine(Server.MapPath("~/images/"), fileName);
-            string filepathToSave = "images/" + fileName;
-            file.SaveAs(path);
+        {
+            if (file != null)
+            {
+                var fileName = Path.GetFileName(file.FileName);
+                var path = Path.Combine(Server.MapPath("~/images/"), fileName);
+                string filepathToSave = "images/" + fileName;
+                file.SaveAs(path);
+            }
             return RedirectToAction("Index");
         }
     }

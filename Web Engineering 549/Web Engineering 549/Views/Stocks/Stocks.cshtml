@@ -1,4 +1,6 @@
-﻿@{
+﻿@model Web_Engineering_549.ViewModels.StockIndexViewModel
+
+@{
     ViewBag.Title = "StocksView";
 }
 
@@ -17,5 +19,5 @@
 
 
 <div id="mainDiv">
-    @Html.Partial("~/Views/Stocks/StocksHero.cshtml");
+    @Html.Partial("~/Views/Stocks/StocksHero.cshtml", Model);
 </div>
