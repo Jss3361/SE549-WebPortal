@@ -7,6 +7,6 @@ namespace Web_Engineering_549.ViewModels
 {
     public class StockIndexViewModel
     {
-        public string stockTicker { get; set; }
+        public string symbol { get; set; }
     }
 }

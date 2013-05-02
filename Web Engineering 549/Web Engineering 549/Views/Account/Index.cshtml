@@ -10,7 +10,7 @@
 <link href="@Url.Content("~/Content/themes/base/jquery.ui.autocomplete.css")" rel="stylesheet" type="text/css" />
 <link href="@Url.Content("~/Content/themes/base/jquery.ui.core.css")" rel="stylesheet" type="text/css" />
 
-
+<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.ui.chatbox.js")" type="text/javascript"></script>
 <script src="http://js.pusher.com/2.0/pusher.min.js" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/Account/chat.js")" type="text/javascript"></script>
@@ -18,13 +18,14 @@
 <script src="@Url.Content("~/Scripts/Stocks/getStocks.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/Account/fbNewsFeed.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/Account/stockSearch.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/Stocks/stockAutoComplete.js")" type="text/javascript"></script>
 
 <div id="chat_div"></div>
 
 
 <div class="row-fluid">
 <div class="span4">
-    <h2>Web Dashboard Comments</h2>
+    <h4>Web Dashboard Comments</h4>
 
         <div id="fb-root"></div>
         <div class="fb-comments" data-href="http://vm549-6.se.rit.edu/" data-width="400px" data-num-posts="10"></div>
@@ -64,19 +65,10 @@ setTimeout('document.getElementById(\'scrnewsblock80030906\').src = (document.lo
                     </script>
                 </tbody>
             </table>
-            <table id="homeStockSearchTable">
-                <tr>
-                    <td>Stock Search:</td>
-                    <td>
-                        <input type="text" id="homeStockSearchField"  /></td>
-                    <td>
-                        <input type="button" value="Search" id="homeStockSearchButton" onclick="getStockQuoteOnHome();" /></td>
-                </tr>
-            </table>
             <div>
-                @using (Html.BeginForm("Stocks", "Stocks", FormMethod.Get))
+                @using (Html.BeginForm("StockInfo", "Stocks", FormMethod.Get))
                 {
-                    <input style="float:left;width:25%;margin-right:5px;margin-left:5px" type="text" name="stockTicker" id="homeStockSearchField" placeholder="ticker symbol"/>
+                    <input style="float:left;width:40%;margin-right:5px;margin-left:5px" type="text" name="symbol" id="stockSearchField" placeholder="ticker symbol"/>
                     <button id="stockSearch" style="float:left" class="btn btn-medium btn-primary" type="submit">Search</button>
                 }
             </div>

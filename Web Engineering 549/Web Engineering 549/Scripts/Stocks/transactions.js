@@ -190,10 +190,12 @@ function displayMyStocks(data) {
 
         var buy = document.createElement("a");
         buy.setAttribute("onclick", "buyStock(" + (i + 2) + ")");
+        buy.setAttribute("href", "#");
         buy.appendChild(document.createTextNode("Buy"));
 
         var sell = document.createElement("a");
         sell.setAttribute("onclick", "sellStock(" + (i + 2) + ")");
+        sell.setAttribute("href", "#");
         sell.appendChild(document.createTextNode("Sell"));
 
         var buyCell = document.createElement("td");
@@ -244,6 +246,7 @@ function buyStock(stock) {
         resizable: false,
         width: 250,
         modal: true,
+        open: function (event, ui) { $(".ui-dialog-titlebar-close .ui-button-text").hide(); },
         buttons: {
             "Purchase": function () {
                 if (validateQuantity($("#quantityToBuy").val())) {
@@ -254,7 +257,7 @@ function buyStock(stock) {
                     document.getElementsByTagName("body")[0].removeChild(document.getElementById("stockTrans"));
                 }
                 else {
-                    alert("invalid quantity");
+                    alert("Invalid Quantity. Please try again.");
                 }
 
 
@@ -335,7 +338,7 @@ function sellStock(stock) {
                     document.getElementsByTagName("body")[0].removeChild(document.getElementById("stockTrans"));
                 }
                 else {
-                    alert("invalid quantity or you are trying to sell more stock than you own");
+                    alert("Invalid quantity or you are trying to sell more stock than you own.");
                 }
 
 

@@ -1,4 +1,6 @@
-﻿<div class="hero-unit" id="mainStockDiv">
+﻿<script src="@Url.Content("~/Scripts/Account/stockSearch.js")" type="text/javascript"></script>
+
+<div class="hero-unit" id="mainStockDiv">
     
     <table id="tickerTable">
         <tr>
@@ -23,15 +25,13 @@
         </tr>
     </table>
     
-    <h1 class="stockText">Welcome to the Stock Portal!</h1>
-    <p class="stockText">
-        Here you can search stock information and request your stock transaction history.
-    </p>
-    
     <div class="stockDiv">
         Stock Search:
-        <input type="text" id="stockSearchField" />
-        <input type="button" value="Search" id="stockSearchButton" onclick="goToStockInfoPage();" />
+            @using (Html.BeginForm("StockInfo", "Stocks", FormMethod.Get, new { @class = "stockForm" }))
+            {
+                <input type="text" name="symbol" id="stockSearchField" placeholder="ticker symbol"/>
+                <button id="stockSearch" class="btn btn-medium btn-primary" type="submit">Search</button>
+            }
         <br />
         <br />
         <a href="Transactions" class="viewStocksLink">View All Transactions</a> 

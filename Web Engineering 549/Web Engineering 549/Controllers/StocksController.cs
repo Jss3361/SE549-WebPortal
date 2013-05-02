@@ -23,13 +23,9 @@ namespace Web_Engineering_549.Controllers
         }
 
         [HttpGet]
-        public ActionResult Stocks(string stockTicker)
+        public ActionResult Stocks()
         {
-            var model = new StockIndexViewModel()
-            {
-                stockTicker = stockTicker ?? null
-            };
-            return View(model);
+            return View();
         }
 
         [HttpGet]
@@ -39,9 +35,13 @@ namespace Web_Engineering_549.Controllers
         }
 
         [HttpGet]
-        public ActionResult StockInfo()
+        public ActionResult StockInfo(string symbol)
         {
-            return View();
+            var model = new StockIndexViewModel()
+            {
+                symbol = symbol ?? null
+            };
+            return View(model);
         }
 
         [HttpGet]

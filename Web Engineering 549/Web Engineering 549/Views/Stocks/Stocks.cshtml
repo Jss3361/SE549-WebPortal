@@ -1,4 +1,4 @@
-﻿@model Web_Engineering_549.ViewModels.StockIndexViewModel
+﻿
 
 @{
     ViewBag.Title = "StocksView";
@@ -14,10 +14,9 @@
 <link href="@Url.Content("~/Content/themes/base/jquery.ui.core.css")" rel="stylesheet" type="text/css" />
 <link href="@Url.Content("~/Content/themes/base/jquery.ui.dialog.css")" rel="stylesheet" type="text/css" />
 <link href="@Url.Content("~/Content/themes/base/jquery.ui.theme.css")" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="@Url.Content("~/Scripts/Stocks/getStocks.js")"></script>
 <script type="text/javascript" src="@Url.Content("~/Scripts/Stocks/stockAutoComplete.js")"></script>
 
 
 <div id="mainDiv">
-    @Html.Partial("~/Views/Stocks/StocksHero.cshtml", Model);
+    @Html.Partial("~/Views/Stocks/StocksHero.cshtml");
 </div>

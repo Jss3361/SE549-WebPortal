@@ -1,7 +1,7 @@
 ﻿google.load('visualization', '1.0', { 'packages': ['corechart'] });
 
 function getStockQuote() {
-    var symbol = getCookie("ticker_symbol");
+    var symbol = symbolParam;
     var url = "http://dev.markitondemand.com/Api/Quote/jsonp/";
     $.ajax({
         url: url,

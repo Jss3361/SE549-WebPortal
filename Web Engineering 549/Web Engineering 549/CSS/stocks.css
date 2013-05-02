@@ -131,9 +131,23 @@ width:275px;
 
 .stockDiv 
 {
-    width:100%;
-    text-align:center;
+
     margin-top:5%;
+}
+
+.stockDiv 
+{
+    width:100%;
+    height:auto; 
+    margin:0 auto;
+    text-align:center;
+}
+
+.stockForm
+{
+    text-align:center;
+    width:80%; 
+    margin:0 auto;
 }
 
 #stockTrans 
