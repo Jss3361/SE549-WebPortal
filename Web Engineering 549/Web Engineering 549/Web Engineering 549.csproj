@@ -177,7 +177,6 @@
     <Content Include="Scripts\modernizr-1.7.js" />
     <Content Include="Scripts\modernizr-1.7.min.js" />
     <Content Include="Scripts\Stocks\getStocks.js" />
-    <Content Include="Scripts\Stocks\homeStockAutoComplete.js" />
     <Content Include="Scripts\Stocks\stockAutoComplete.js" />
     <Content Include="Scripts\Stocks\stockInfo.js" />
     <Content Include="Scripts\Stocks\transactions.js" />
@@ -243,6 +242,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Stocks\StocksOwned.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="images\" />
   </ItemGroup>
   <PropertyGroup>
