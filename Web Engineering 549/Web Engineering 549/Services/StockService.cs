@@ -106,5 +106,55 @@ namespace Web_Engineering_549.Services
             }
             return topFiveStocks;
         }
+
+        public string GetComment(long userId, string symbol)
+        {
+            try
+            {
+                using (var context = new EntityContext())
+                {
+                    var comment = context.StockComment.SingleOrDefault(x => x.User_ID == userId && x.Stock == symbol);
+                    return comment != null ? comment.Comment : "";
+                }
+            }
+            catch (Exception ex)
+            {
+                return "";
+            }
+        }
+
+        public bool SaveComment(long userId, string symbol, String comment)
+        {
+            try
+            {
+                using (var context = new EntityContext())
+                {
+                    var _comment = context.StockComment.SingleOrDefault(x => x.User_ID == userId && x.Stock == symbol);
+                    if (_comment != null)
+                    {
+                        _comment.Comment = comment;
+                    }
+                    else
+                    {
+                        _comment = new StockComment
+                        {
+                            Comment = comment,
+                            User_ID = userId,
+                            Timestamp = DateTime.Now,
+                            Stock = symbol
+                        };
+                        context.StockComment.Add(_comment);
+                    }
+                    
+                    context.SaveChanges();
+                    return true;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }

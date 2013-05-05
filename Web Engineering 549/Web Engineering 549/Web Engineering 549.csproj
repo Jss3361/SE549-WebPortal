@@ -149,7 +149,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\Account\facebookLogin.js" />
     <Content Include="Scripts\Account\facebookLogout.js" />
-    <Content Include="Scripts\Account\fbNewsFeed.js" />
+    <Content Include="Scripts\Account\facebook.js" />
     <Content Include="Scripts\Account\stockSearch.js" />
     <Content Include="Scripts\bootstrap-fileupload.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -178,6 +178,7 @@
     <Content Include="Scripts\modernizr-1.7.min.js" />
     <Content Include="Scripts\Stocks\getStocks.js" />
     <Content Include="Scripts\Stocks\stockAutoComplete.js" />
+    <Content Include="Scripts\Stocks\stockComment.js" />
     <Content Include="Scripts\Stocks\stockInfo.js" />
     <Content Include="Scripts\Stocks\transactions.js" />
     <Content Include="Web.config">

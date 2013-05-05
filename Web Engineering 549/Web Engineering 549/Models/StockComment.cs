@@ -10,7 +10,7 @@ namespace Web_Engineering_549.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public System.Int64 ID { get; set; }
+        public int ID { get; set; }
         public System.Int64 User_ID { get; set; }
         public String Stock { get; set; }
         public String Comment { get; set; }

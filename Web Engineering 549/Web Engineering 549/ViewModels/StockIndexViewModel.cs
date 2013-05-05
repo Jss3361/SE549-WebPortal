@@ -8,5 +8,6 @@ namespace Web_Engineering_549.ViewModels
     public class StockIndexViewModel
     {
         public string symbol { get; set; }
+        public string comment { get; set; }
     }
 }

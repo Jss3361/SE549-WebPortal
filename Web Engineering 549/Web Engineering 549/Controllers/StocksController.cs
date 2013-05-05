@@ -9,7 +9,7 @@ using Web_Engineering_549.ViewModels;
 
 namespace Web_Engineering_549.Controllers
 {
-    public class StocksController : Controller
+    public class StocksController : BaseController
     {
         
         StockService stockService = new StockService();
@@ -39,7 +39,8 @@ namespace Web_Engineering_549.Controllers
         {
             var model = new StockIndexViewModel()
             {
-                symbol = symbol ?? null
+                symbol = symbol.ToUpper() ?? null,
+                comment =  stockService.GetComment(accountService.getUserID(base.GetSession()), symbol)
             };
             return View(model);
         }
@@ -164,15 +165,10 @@ namespace Web_Engineering_549.Controllers
             return new EmptyResult();
         }
 
-        public ActionResult SaveComment()
+        public ActionResult SaveComment(String comment, String symbol)
         {
-            // To Do : finish this metho
-            return new EmptyResult();
-        }
-
-        public ActionResult GetComment()
-        {
-            return new EmptyResult();
+            stockService.SaveComment(accountService.getUserID(base.GetSession()), symbol, comment);
+            return RedirectToAction("StockInfo", new { symbol });
         }
 
         public ActionResult SellStock()

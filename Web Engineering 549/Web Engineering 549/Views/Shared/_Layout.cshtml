@@ -5,6 +5,7 @@
     <title>@ViewBag.Title</title>
     <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/CSS/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/CSS/bootstrap-responsive.min.css")" rel="stylesheet" type="text/css" />
     <script src="@Url.Content("~/Scripts/jquery-1.9.1.min.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/jquery-ui-1.10.2.custom.min.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/modernizr-1.7.min.js")" type="text/javascript"></script>
@@ -26,10 +27,11 @@
 </head>
 
 <body>
-  <div style="float:left;">
+  <div>
         @Html.Partial("~/Views/UserControls/PrimaryNav.cshtml")
     </div>
-    <div style="clear:both;" />
-    @RenderBody()
+    <div class="container">
+        @RenderBody()
+    </div>
 </body>
 </html>

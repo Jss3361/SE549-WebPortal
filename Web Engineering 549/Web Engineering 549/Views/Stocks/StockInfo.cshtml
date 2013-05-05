@@ -1,17 +1,14 @@
 ﻿@{
     ViewBag.Title = "StockInfo";
 }
-
 @model Web_Engineering_549.ViewModels.StockIndexViewModel
-           
 <script type="text/javascript">
     @{
         <text>
         var symbolParam = '@Model.symbol';
         </text>
     }
-</script>         
-
+</script>
 <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" type="text/javascript"></script>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <link href="@Url.Content("~/CSS/stocks.css")" type="text/css" rel="stylesheet" />
@@ -19,44 +16,76 @@
 <link href="@Url.Content("~/Content/themes/base/jquery.ui.theme.css")" rel="stylesheet" type="text/css" />
 <link href="@Url.Content("~/Content/themes/base/jquery.ui.dialog.css")" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="@Url.Content("~/Scripts/Stocks/stockInfo.js")"></script>
-
-<div class="hero-unit">
-    <div id="stockControls">
-        <input type="submit" value="Buy Stock" class="btn btn-primary btn-large" id="buyStockButton" onclick="buyStock()">
+<script type="text/javascript" src="@Url.Content("~/Scripts/Stocks/stockComment.js")"></script>
+<div id="stockInfoDiv" class="row-fluid">
+    <div class="span4 well">
+        <div id="resultsDiv">
+        </div>
+        <hr />
+        <div id="commentDiv">
+            @if (Model.comment == null || Model.comment == "")
+            {
+                <div id="addCommentForm">
+                    @using (Html.BeginForm("SaveComment", "Stocks", FormMethod.Post))
+                    {
+                        <textarea class="input-block-level" placeholder="Add a personal note for this stock" name="comment"></textarea>
+                        <button class="btn btn-primary pull-right" type="submit">Save Note</button>
+                        @Html.Hidden("symbol", Model.symbol);
+                    }
+                </div>
+            }
+            else
+            {
+                <div id="comment">
+                    <p id="commentP">@Model.comment</p>
+                     <div class="pull-right">
+                        <button id="editComment" class="btn btn-primary" type="submit">Edit Note</button>
+                    </div>
+                    <div style="clear:both"></div>
+                </div>
+                <div id="editCommentForm" style="display: none;">
+                    @using (Html.BeginForm("SaveComment", "Stocks", FormMethod.Post))
+                    {
+                        <textarea class="input-block-level" id="commentText" name="comment"></textarea>
+                        <div class="pull-right">
+                            <button class="btn btn-primary" type="submit">
+                            Save</button>
+                            <button id="cancelEdit" class="btn btn-primary" type="button">
+                            Cancel</button>
+                        </div>
+                        @Html.Hidden("symbol", Model.symbol);
+                    }
+                </div>
+            }
+        </div>
     </div>
-<div id="stockInfoDiv">
-    <div style="float:left;width:50%" id="resultsDiv"></div>
-    <div style="float:right;width:50%" id="chartDiv"></div>
+    <div class="span8">
+        <div id="chartDiv">
+        </div>
+    </div>
 </div>
-<div id="commentDiv" style="clear:both">
-    <textarea id="commentArea"></textarea>
-    <br />
-    <button id="saveCommentButton" onclick="">Save Comment</button>
-    <button id="editCommentButton" onclick="">Edit Comment</button>
-</div>
-
 <div id="stockTrans" title="Set Up Your Transaction">
-       <p class="validateTips" style="display:none">All form fields are required.</p>
-        <form id="buyStockForm" style="display:none">
-            <fieldset>
-                <label for="nameOfStock">Stock Name</label>
-                <input type="text" name="nameOfStock" id="nameOfStock" class="text ui-widget-content ui-corner-all" />
-                <label for="ticker">Stock Symbol</label>
-                <input type="text" name="ticker" id="ticker" class="text ui-widget-content ui-corner-all"/>
-                <label for="stockPrice">Stock Price</label>
-                <input type="text" name="stockPrice" id="stockPrice" class="text ui-widget-content ui-corner-all" />
-                <label for="quantityToBuy">Quantity</label>
-                <input type="text" name="quantity" id="quantityToBuy" class="text ui-widget-content ui-corner-all" />
-            </fieldset>
-        </form>
-    </div>
-
-
+    <p class="validateTips" style="display: none">
+        All form fields are required.</p>
+    <form id="buyStockForm" style="display: none">
+    <fieldset>
+        <label for="nameOfStock">
+            Stock Name</label>
+        <input type="text" name="nameOfStock" id="nameOfStock" class="text ui-widget-content ui-corner-all" />
+        <label for="ticker">
+            Stock Symbol</label>
+        <input type="text" name="ticker" id="ticker" class="text ui-widget-content ui-corner-all" />
+        <label for="stockPrice">
+            Stock Price</label>
+        <input type="text" name="stockPrice" id="stockPrice" class="text ui-widget-content ui-corner-all" />
+        <label for="quantityToBuy">
+            Quantity</label>
+        <input type="text" name="quantity" id="quantityToBuy" class="text ui-widget-content ui-corner-all" />
+    </fieldset>
+    </form>
 </div>
-
 <script type="text/javascript">
     $(document).ready(function () {
         getStockQuote();
     });
 </script>
-

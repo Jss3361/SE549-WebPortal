@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
-    $("#chat_div").chatbox({ id: "chat_div",
+    $("#chat_div").chatbox({ 
+        id: "chat_div",
         title: "Chat",
         user: "test",
         offset: 20,

@@ -1,218 +1,185 @@
-﻿#gainerDiv, #loserDiv 
+﻿#gainerDiv, #loserDiv
 {
-    border-radius:4px;
-    border-width:2px;
-    border-color:Silver;
-    border-style:solid;
-    background-color:white;
-    margin-top:0px;
+    border-radius: 4px;
+    border-width: 2px;
+    border-color: Silver;
+    border-style: solid;
+    background-color: white;
+    margin-top: 0px;
 }
 
 
-
-#chartDiv 
-{
-position:absolute;
-right:4%;
-top:21.5%;
-}
-
-#queryTable 
-{
-    width:50%;
-    border-style:solid;
-    border-radius:6px;
-    border-width:2px;
-    border-color:Silver;
-    background-color:white;
-}
 
 #queryTable th, #quoteTable th
 {
-    font-size:28px;
+    font-size: 28px;
 }
 
 #gainerDiv h4, #loserDiv h4
 {
-    margin-left:6px;
+    margin-left: 6px;
 }
 
 #tickerTable, #stockQuoteTable
 {
-    width:100%;
-    margin-bottom:5%;
+    width: 100%;
+    margin-bottom: 5%;
 }
 
 #tickerTable td, #stockQuoteTable td
 {
-    width:50%;
-}
-
-#stockQuoteTable td, #stockResultsDiv
-{
-    vertical-align:top;
+    width: 50%;
 }
 
 
-.ui-autocomplete-loading 
+
+.ui-autocomplete-loading
 {
     background: white url('images/small_loading.gif') right center no-repeat;
 }
 
 
 
-svg 
+svg
 {
-    border-style:solid;
-    border-color:silver;
-    border-width:2px;
-    margin-top:3px;
+    border-style: solid;
+    border-color: silver;
+    border-width: 2px;
+    margin-top: 3px;
 }
 
 
 #topStockTable, #quoteTable
 {
-    width:100%;
-    text-align:left;
-    border-style:solid;
-    border-radius:6px;
-    border-width:2px;
-    border-color:Silver;
-    background-color:white;
+    width: 100%;
+    text-align: left;
+    border-style: solid;
+    border-radius: 6px;
+    border-width: 2px;
+    border-color: Silver;
+    background-color: white;
 }
 
-.highcharts-container 
+.highcharts-container
 {
-    border-style:solid;
-    border-radius:6px;
-    border-width:2px;
-    border-color:Silver;
+    border-style: solid;
+    border-radius: 6px;
+    border-width: 2px;
+    border-color: Silver;
 }
 
-#stockQuoteDiv 
+#stockQuoteDiv
 {
-    margin-top:8px;
-}
-
-
-
-#stockSearchField
-{
-    margin:0px;
-    width:30%;
-}
-
-#homeStockSearchField 
-{
-margin:0px;
-width:275px;
-}
-
-#homeStockSearchTable 
-{
-
+    margin-top: 8px;
 }
 
 
-#stockSearchTable 
+#homeStockSearchField
 {
-    margin-top:10px;
-    margin-left:0px;
-    text-align:left;
-    width:50%;
-    float:right;
+    margin: 0px;
+    width: 275px;
 }
 
-#ownedStocksTable 
+
+#stockSearchTable
 {
-    margin-top:10px;
-    float:left;
+    margin-top: 10px;
+    margin-left: 0px;
+    text-align: left;
+    width: 50%;
+    float: right;
 }
 
-.stockDiv 
+#ownedStocksTable
 {
-
-    margin-top:5%;
+    margin-top: 10px;
+    float: left;
 }
 
-.stockDiv 
+.stockDiv
 {
-    width:100%;
-    height:auto; 
-    margin:0 auto;
-    text-align:center;
+    margin-top: 5%;
+}
+
+.stockDiv
+{
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .stockForm
 {
-    text-align:center;
-    width:80%; 
-    margin:0 auto;
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
 }
 
-#stockTrans 
+#stockTrans
 {
-padding:10px;
+    padding: 10px;
 }
 
-.ui-dialog-buttonset 
+.ui-dialog-buttonset
 {
-    width:100%;
-    text-align:center;
+    width: 100%;
+    text-align: center;
 }
 
-.ui-widget-overlay 
+.ui-widget-overlay
 {
-    background-color:grey;
-    opacity:0.9;
+    background-color: grey;
+    opacity: 0.9;
 }
 
-#stockTransactionsTable 
+#stockTransactionsTable
 {
-margin-left:2%;
-margin-top:0px;
-width:95%;
-border-style:solid;
-border-radius:6px;
-border-width:2px;
-border-color:Silver;
-background-color:white;
-text-align:center;
+    margin-left: 2%;
+    margin-top: 0px;
+    width: 95%;
+    border-style: solid;
+    border-radius: 6px;
+    border-width: 2px;
+    border-color: Silver;
+    background-color: white;
+    text-align: center;
 }
 
-#transactionsHeader 
+#transactionsHeader
 {
-margin-left:2%;
-margin-bottom:0px;
-width:94.7%;
-border-style:solid;
-border-width:2px;
-border-color:Silver;
-background-color:white;
-text-align:center;
+    margin-left: 2%;
+    margin-bottom: 0px;
+    width: 94.7%;
+    border-style: solid;
+    border-width: 2px;
+    border-color: Silver;
+    background-color: white;
+    text-align: center;
 }
 
-#mainStockDiv 
+#mainStockDiv
 {
-padding-top:1%;
+    padding-top: 1%;
 }
 
-.stockText 
+.stockText
 {
-text-align:center;
+    text-align: center;
 }
 
-#buyStockButton 
+.viewStocksLink
 {
-margin-left:2%;
+    font-size: 20px;
 }
 
-#stockControls 
+#commentDiv
 {
-margin-bottom:2%;
+    margin-top: 20px;
+    vertical-align:top;
 }
 
-.viewStocksLink 
+#commentP
 {
-font-size:20px;
+   word-wrap: break-word;  
 }
