@@ -28,6 +28,29 @@ namespace Web_Engineering_549.Services
         }
 
 
+        public List<CalendarEvent> getEvents(long userid)
+        {
+
+            List<CalendarEvent> events = new List<CalendarEvent>();
+            try
+            {
+                using (var context = new EntityContext())
+                {
+                    events = context.CalendarEvent.Where(p => p.user_id == userid).ToList();
+
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return events;
+        }
+
+
 
 
 
