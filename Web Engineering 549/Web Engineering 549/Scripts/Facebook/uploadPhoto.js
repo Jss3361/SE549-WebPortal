@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
     $('.uploadPhoto').click(function () {
         var _this = $(this);
-        var imgURL = _this.prev().html()
+        var imgURL = _this.prev().attr('src');
 
         var token = FB.getAuthResponse()['accessToken'];
 
@@ -11,11 +11,10 @@
             url: imgURL,
             access_token: token
         }, function (response) {
-
             if (!response || response.error) {
                 alert('Error occured');
             } else {
-                alert('success');
+                alert('Image added to Facebook.');
             }
 
         });

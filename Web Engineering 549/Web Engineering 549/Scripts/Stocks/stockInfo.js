@@ -12,8 +12,11 @@ function getStockQuote() {
         success: function (data) {
             console.log(data.Data);
 
-            var result = "<table class='table' id='queryTable'>";
-            result += "<tr><th colspan='2' id='stockName'>" + data.Data.Name + "</th></tr>";
+            var result = "";
+            result += "<h3 id='stockName'>" + data.Data.Name + "</h3>";
+            result += "<p id=\"stockControls\"><input type=\"submit\" value=\"Buy Stock\" class=\"btn btn-primary\" id=\"buyStockButton\" onclick=\"buyStock()\"></p>";
+
+            result += "<table class='table' id='queryTable'>";
             result += "<tr><td>Symbol</td><td id='tickerSymbol'>" + data.Data.Symbol + "</td></tr>";
 
             var change = data.Data.Change + "";
@@ -69,8 +72,7 @@ function getStockQuote() {
                     new google.visualization.LineChart(document.getElementById("chartDiv")).draw(
                             data, {
                                 curveType: "function",
-                                width: 647,
-                                height: 370,
+                                height: 500,
                                 title: stockName + ' - History for Past 3 Years'
                             }
                         );

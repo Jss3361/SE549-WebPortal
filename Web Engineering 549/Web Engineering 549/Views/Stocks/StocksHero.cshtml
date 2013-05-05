@@ -27,31 +27,19 @@
     
     <div class="stockDiv">
         Stock Search:
-            @using (Html.BeginForm("StockInfo", "Stocks", FormMethod.Get, new { @class = "stockForm" }))
-            {
-                <input type="text" name="symbol" id="stockSearchField" placeholder="ticker symbol"/>
-                <button id="stockSearch" class="btn btn-medium btn-primary" type="submit">Search</button>
-            }
+        @using (Html.BeginForm("StockInfo", "Stocks", FormMethod.Get, new { @class = "form-search"}))
+        {
+                    
+            <div class="input-append">
+                <input id="stockSearchField" name="symbol" placeholder="symbol" type="text" class="input-medium search-query"></input>
+                <button id="stockSearch" type="submit" class="btn">Search</button>
+            </div>
+        }
         <br />
         <br />
         <a href="Transactions" class="viewStocksLink">View All Transactions</a> 
         |
         <a href="StocksOwned" class="viewStocksLink">View My Stocks</a>       
     </div>
-    <!--<div id="stockTrans" title="Set Up Your Transaction">
-       <p class="validateTips" style="display:none">All form fields are required.</p>
-        <form id="buyStockForm" style="display:none">
-            <fieldset>
-                <label for="nameOfStock">Stock Name</label>
-                <input type="text" name="nameOfStock" id="nameOfStock" class="text ui-widget-content ui-corner-all" />
-                <label for="ticker">Stock Symbol</label>
-                <input type="text" name="ticker" id="ticker" class="text ui-widget-content ui-corner-all"/>
-                <label for="stockPrice">Stock Price</label>
-                <input type="text" name="stockPrice" id="stockPrice" class="text ui-widget-content ui-corner-all" />
-                <label for="quantityToBuy">Quantity</label>
-                <input type="text" name="quantity" id="quantityToBuy" class="text ui-widget-content ui-corner-all" />
-            </fieldset>
-        </form>
-    </div>-->
     
 </div>
