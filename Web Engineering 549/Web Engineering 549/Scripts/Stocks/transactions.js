@@ -126,7 +126,8 @@ function loadMyStocks() {
         type: "post",
         success: function (data) {
             if (data.length > 0) {
-                displayMyStocks(data);
+                // displayMyStocks(data);
+                getGainAndLoss(data);
             }
             else {
                 $("#stockTransactionsDiv").html("<h3 class='no-transactions-message'>No Stocks Currently Owned</h3>");
@@ -135,9 +136,89 @@ function loadMyStocks() {
     });
 }
 
-function displayMyStocks(data) {
-    console.log(data);
+function getGainAndLoss(data) {
+    var gains = new Array();
 
+    // get all of the ticker symbols
+    for (i = 0; i < data.length; i++) {
+        var singleGain = new Object();
+        singleGain.Symbol = data[i].Ticker_Symbol;
+        singleGain.MyPrice = data[i].Rate;
+
+        gains.push(singleGain);
+    }
+
+    var waitCounter = 0;
+    var url = "http://dev.markitondemand.com/Api/Quote/jsonp/";
+    for (i = 0; i < gains.length; i++) {
+        $.ajax({
+            url: url,
+            dataType: "jsonp",
+            data: {
+                symbol: gains[i].Symbol
+            },
+            success: function (returnData) {
+                var lastPrice = parseFloat(returnData.Data.LastPrice).toFixed(2);
+
+                for (j = 0; j < data.length; j++) {
+                    if (returnData.Data.Symbol == data[j].Ticker_Symbol) {
+                        var rate = data[j].Rate;
+                    }
+                }
+
+                console.log("lastPrice = " + lastPrice);
+                console.log("rate = " + rate);
+
+                var gainLoss = new Object();
+
+                if (parseFloat(lastPrice) > parseFloat(rate)) {
+                    var loss = parseFloat(parseFloat(lastPrice) - parseFloat(rate)).toFixed(2);
+
+                    gainLoss.Loss = loss;
+                    gainLoss.Gain = "none";
+                    gainLoss.Equal = "none";
+                }
+                else if (parseFloat(lastPrice) < parseFloat(rate)) {
+                    var gain = parseFloat(parseFloat(rate) - parseFloat(lastPrice)).toFixed(2);
+
+                    gainLoss.Gain = gain;
+                    gainLoss.Loss = "none";
+                    gainLoss.Equal = "none";
+                }
+                else if (parseFloat(lastPrice) == parseFloat(rate)) {
+                    gainLoss.Equal = parseFloat(0).toFixed(2);
+                    gainLoss.Gain = "none";
+                    gainLoss.Loss = "none";
+                }
+
+               
+
+                for (j = 0; j < data.length; j++) {
+                    if (data[j].Ticker_Symbol == returnData.Data.Symbol) {
+                        data[j].GainLoss = new Object();
+                        data[j].GainLoss.Gain = gainLoss.Gain;
+                        data[j].GainLoss.Loss = gainLoss.Loss;
+                        data[j].GainLoss.Equal = gainLoss.Equal;
+                        data[j].CurrentPrice = returnData.Data.LastPrice;
+                    }
+                }
+
+                
+
+
+                waitCounter++;
+
+                if (waitCounter == data.length) {
+                    displayMyStocks(data);
+                }
+            }
+        });
+    }
+}
+
+
+function displayMyStocks(data) {
+   
     var table = document.createElement("table");
     table.setAttribute("id", "stockTransactionsTable");
     table.setAttribute("class", "table");
@@ -153,8 +234,14 @@ function displayMyStocks(data) {
     var quantityOwned = document.createElement("th");
     quantityOwned.appendChild(document.createTextNode("Quantity Owned"));
 
+    var currentPriceHeader = document.createElement("th");
+    currentPriceHeader.appendChild(document.createTextNode("Current Price"));
+
     var price = document.createElement("th");
     price.appendChild(document.createTextNode("Average Price"));
+
+    var gainLossHeader = document.createElement("th");
+    gainLossHeader.appendChild(document.createTextNode("Gain/Loss"));
 
     var buyHeader = document.createElement("th");
     var sellHeader = document.createElement("th");
@@ -162,15 +249,19 @@ function displayMyStocks(data) {
     headerRow.appendChild(stockName);
     headerRow.appendChild(stockSymbol);
     headerRow.appendChild(quantityOwned);
+    headerRow.appendChild(currentPriceHeader);
     headerRow.appendChild(price);
+    headerRow.appendChild(gainLossHeader);
     headerRow.appendChild(buyHeader);
     headerRow.appendChild(sellHeader);
 
 
     table.appendChild(headerRow);
 
+    var total = 0;
+
     for (var i = 0; i < data.length; i++) {
-        console.log(data[i].Stock_Name);
+        
 
         var currentRow = document.createElement("tr");
 
@@ -183,10 +274,37 @@ function displayMyStocks(data) {
         var quantity = document.createElement("td");
         quantity.appendChild(document.createTextNode(data[i].Quantity));
 
+        var currentPrice = document.createElement("td");
+        currentPrice.appendChild(document.createTextNode("$" + data[i].CurrentPrice));
+
         var transPrice = data[i].Rate;
 
         var rate = document.createElement("td");
         rate.appendChild(document.createTextNode("$" + parseFloat(transPrice).toFixed(2)));
+
+        var gainLoss = document.createElement("td");
+        gainLoss.style.textAlign = "right";
+
+        if (data[i].GainLoss.Gain != "none") {
+            gainLoss.style.color = "green";
+            var gain = parseFloat(parseFloat(data[i].GainLoss.Gain) * parseInt(data[i].Quantity)).toFixed(2);
+
+            total = parseFloat(parseFloat(total) + parseFloat(gain)).toFixed(2);
+
+            gainLoss.appendChild(document.createTextNode("+ $" + gain));
+        }
+        else if (data[i].GainLoss.Loss != "none") {
+            gainLoss.style.color = "red";
+            var loss = parseFloat(parseFloat(data[i].GainLoss.Loss) * parseInt(data[i].Quantity)).toFixed(2);
+
+            total = parseFloat(parseFloat(total) - parseFloat(loss)).toFixed(2);
+
+            gainLoss.appendChild(document.createTextNode("- $" + loss));
+        }
+        else if (data[i].GainLoss.Equal != "none") {
+            gainLoss.appendChild(document.createTextNode("$" + data[i].GainLoss.Equal));
+        }
+        
 
         var buy = document.createElement("a");
         buy.setAttribute("onclick", "buyStock(" + (i + 2) + ")");
@@ -207,12 +325,59 @@ function displayMyStocks(data) {
         currentRow.appendChild(name);
         currentRow.appendChild(symbol);
         currentRow.appendChild(quantity);
+        currentRow.appendChild(currentPrice);
         currentRow.appendChild(rate);
+        currentRow.appendChild(gainLoss);
         currentRow.appendChild(buyCell);
         currentRow.appendChild(sellCell);
 
         table.appendChild(currentRow);
     }
+
+    var lastRow = document.createElement("tr");
+    var dummy1 = document.createElement("td");
+    var dummy2 = document.createElement("td");
+    var dummy3 = document.createElement("td");
+    var dummy4 = document.createElement("td");
+
+    var totalHeader = document.createElement("td");
+    totalHeader.style.textAlign = "right";
+    totalHeader.appendChild(document.createTextNode("Total: "));
+
+    var totalValue = document.createElement("td");
+
+    totalValue.style.textAlign = "right";
+
+    if (parseFloat(total) < 0) {
+        totalValue.style.color = "red";
+
+        total = total + "";
+        total = total.replace('-','');
+
+        totalValue.appendChild(document.createTextNode("- $" + total));
+    }
+    else if (parseFloat(total) == 0) {
+        totalValue.appendChild(document.createTextNode("$" + total));
+    }
+    else if (parseFloat(total) > 0) {
+        totalValue.style.color = "green";
+        totalValue.appendChild(document.createTextNode("+ $" + total));
+    }
+
+    var dummy5 = document.createElement("td");
+    var dummy6 = document.createElement("td");
+
+    lastRow.appendChild(dummy1);
+    lastRow.appendChild(dummy2);
+    lastRow.appendChild(dummy3);
+    lastRow.appendChild(dummy4);
+    lastRow.appendChild(totalHeader);
+    lastRow.appendChild(totalValue);
+    lastRow.appendChild(dummy5);
+    lastRow.appendChild(dummy6);
+
+    table.appendChild(lastRow);
+
     $("#stockTransactionsDiv").html("");
     document.getElementById("stockTransactionsDiv").appendChild(table);
 }

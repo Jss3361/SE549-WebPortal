@@ -8,7 +8,10 @@
     margin-top: 0px;
 }
 
-
+#stockLoadingMessage 
+{
+text-align:center;
+}
 
 #queryTable th, #quoteTable th
 {
