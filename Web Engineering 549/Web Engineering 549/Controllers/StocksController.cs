@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Web_Engineering_549.Services;
 using Web_Engineering_549.Models;
 using Web_Engineering_549.ViewModels;
+using Web_Engineering_549.ControllerAttributes;
 
 namespace Web_Engineering_549.Controllers
 {
@@ -17,23 +18,27 @@ namespace Web_Engineering_549.Controllers
         //
         // GET: /Stocks/
 
+        [Authenticate]
         public ActionResult Index()
         {
             return View();
         }
 
+        [Authenticate]
         [HttpGet]
         public ActionResult Stocks()
         {
             return View();
         }
 
+        [Authenticate]
         [HttpGet]
         public ActionResult Transactions()
         {
             return View();
         }
 
+        [Authenticate]
         [HttpGet]
         public ActionResult StockInfo(string symbol)
         {
@@ -45,12 +50,14 @@ namespace Web_Engineering_549.Controllers
             return View(model);
         }
 
+        [Authenticate]
         [HttpGet]
         public ActionResult StocksOwned()
         {
             return View();
         }
 
+        [Authenticate]
         public ActionResult SaveBuyTransaction(String stockName, String stockTicker, int quantity, double rate)
         {
             StockTransaction trans = new StockTransaction();
@@ -69,7 +76,7 @@ namespace Web_Engineering_549.Controllers
             return new EmptyResult();
         }
 
-
+        [Authenticate]
         public List<StockTransaction> combineSameStockTransactions(List<StockTransaction> trans)
         {
             List<StockTransaction> result = new List<StockTransaction>();
@@ -133,6 +140,7 @@ namespace Web_Engineering_549.Controllers
             return result;
         }
 
+        [Authenticate]
         public ActionResult GetAllTransactions()
         {
             HttpCookie cookie = Request.Cookies["SESSION_ID"];
@@ -145,6 +153,7 @@ namespace Web_Engineering_549.Controllers
             return result;
         }
 
+        [Authenticate]
         public ActionResult GetMyStocks()
         {
             HttpCookie cookie = Request.Cookies["SESSION_ID"];
@@ -159,23 +168,27 @@ namespace Web_Engineering_549.Controllers
             return result;
         }
 
+        [Authenticate]
         public ActionResult GetSoldStocks()
         {
             // To Do : finish this method
             return new EmptyResult();
         }
 
+        [Authenticate]
         public ActionResult SaveComment(String comment, String symbol)
         {
             stockService.SaveComment(accountService.getUserID(base.GetSession()), symbol, comment);
             return RedirectToAction("StockInfo", new { symbol });
         }
 
+        [Authenticate]
         public ActionResult SellStock()
         {
             return new EmptyResult();
         }
 
+        [Authenticate]
         public ActionResult GetTopFiveStocks()
         {
             HttpCookie cookie = Request.Cookies["SESSION_ID"];

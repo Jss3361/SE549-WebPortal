@@ -1,84 +1,51 @@
 ﻿@{
     ViewBag.Title = "Calendar";
 }
-<h2>
-    Calendar</h2>
+<p>
+    <a href="#addEventModal" role="button" class="btn btn-primary" data-toggle="modal">Create
+        Event</a>
+</p>
 <link href="@Url.Content("~/CSS/fullcalendar.css")" rel="stylesheet" type="text/css" />
 <link href="@Url.Content("~/CSS/fullcalendar.print.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/CSS/datepicker.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/CSS/bootstrap-timepicker.min.css")" rel="stylesheet" type="text/css" />
 <script src="@Url.Content("~/Scripts/Calendar/fullcalendar.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/Calendar/gcal.js")" type="text/javascript"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-
-        // page is now ready, initialize the calendar...
-
-        $('#calendar').fullCalendar({
-            aspectRatio: 3,
-
-            events: [
-
-    ]
-
-        });
-        $.ajax({
-            url: '/Calendar/GetEvents/',
-            type: 'GET'
-
-
-
-        }).success(function () {
-            $.each(function () {
-                $('#calendar').fullCalendar('renderEvent', this);
-
-            });
-
-        });
-    });
-
-
-
-</script>
+<script src="@Url.Content("~/Scripts/Calendar/calendarEvents.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/bootstrap-datepicker.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/bootstrap-timepicker.min.js")" type="text/javascript"></script>
+<style>
+    .datepicker
+    {
+        z-index: 1152;
+    }
+</style>
 <div id='calendar'>
 </div>
-<div>
-    <h3>
-        Create a new event</h3>
-    <input type="text" runat="server" placeholder="Enter event title" id="eventTitle" />
-    <br />
-    <input type="text" runat="server" placeholder="Enter event start date" id="startDate" />
-    <br />
-    <input type="text" runat="server" placeholder="Enter description" id="description" />
-    <br />
-    <input type="text" runat="server" placeholder="Enter location" id="location" />
+<div id="addEventModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+            ×</button>
+        <h3 id="myModalLabel">
+            Create a New Event</h3>
+    </div>
+    <div class="modal-body">
+        <input type="text" placeholder="Enter event title" id="eventTitle" />
+        <br />
+        <div class="input-append bootstrap-timepicker">
+            <input id="startTime" type="text" />
+            <span class="add-on"><i class="icon-time"></i></span>
+        </div>
+        <br />
+        <input type="text" placeholder="Enter event start date" id="startDate" />
+        <br />
+        <input type="text" placeholder="Enter description" id="description" />
+        <br />
+        <input type="text" placeholder="Enter location" id="location" name="location"/>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <input class="btn btn-primary" type="button" onclick="addEvent()" value="Create Event" />
+    </div>
 </div>
-<input type="button" onclick="addEvent()" runat="server" value="Create Event" />
-<script type="text/javascript">
-    function addEvent() {
-        var newEvent = new Object();
-        var startDate = document.getElementById("startDate").value;
-        var title = document.getElementById("eventTitle").value;
-        var description = document.getElementById("description").value;
-        var location = document.getElementById("location").value;
-
-
-        newEvent.title = title;
-        newEvent.start = new Date(startDate);
-        newEvent.allDay = false;
-
-        $.ajax({
-            url: '/Calendar/SaveEvent/',
-            data: { event_title: title, event_start_date: startDate, event_description: description, event_location: location },
-            type: 'POST'
-        });
-
-
-
-        $('#calendar').fullCalendar('renderEvent', newEvent);
-    }
-
-
-
-
-
-
-</script>

@@ -102,6 +102,7 @@
     <Compile Include="Services\CalendarService.cs" />
     <Compile Include="Services\ChatService.cs" />
     <Compile Include="Services\StockService.cs" />
+    <Compile Include="ViewModels\CalendarEventViewModel.cs" />
     <Compile Include="ViewModels\StockIndexViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -137,23 +138,29 @@
     <Content Include="CSS\bootstrap-fileupload.min.css" />
     <Content Include="CSS\bootstrap-responsive.css" />
     <Content Include="CSS\bootstrap-responsive.min.css" />
+    <Content Include="CSS\bootstrap-timepicker.min.css" />
     <Content Include="CSS\bootstrap.css" />
     <Content Include="CSS\bootstrap.min.css" />
     <Content Include="CSS\bootstrap_table.min.css" />
     <Content Include="CSS\account.css" />
+    <Content Include="CSS\datepicker.css" />
     <Content Include="CSS\fullcalendar.css" />
     <Content Include="CSS\fullcalendar.print.css" />
     <Content Include="CSS\jquery.ui.chatbox.css" />
     <Content Include="CSS\stocks.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="img\glyphicons-halflings.png" />
     <Content Include="Scripts\Account\facebookLogin.js" />
     <Content Include="Scripts\Account\facebookLogout.js" />
     <Content Include="Scripts\Account\facebook.js" />
     <Content Include="Scripts\Account\stockSearch.js" />
+    <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-fileupload.min.js" />
+    <Content Include="Scripts\bootstrap-timepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Calendar\calendarEvents.js" />
     <Content Include="Scripts\Calendar\fullcalendar.js" />
     <Content Include="Scripts\Calendar\fullcalendar.min.js" />
     <Content Include="Scripts\Calendar\gcal.js" />
