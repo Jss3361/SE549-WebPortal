@@ -15,13 +15,18 @@
                 },
                 success: function (data) {
                     var events = [];
+                    var options = "";
                     $.each(data.events, function () {
                         _this = this;
+                        var optn = document.createElement("OPTION");
+                        optn.text = _this.Title;
+                        optn.value = _this.ID;
                         events.push({
                             title: _this.Title,
                             start: new Date(_this.Date),
                             allDay: false
                         });
+                        document.getElementById("eventDropDown").options.add(optn);
                     });
                     callback(events);
                 }
@@ -52,6 +57,10 @@
             $('#eventTitle').val('');
             $('#description').val('');
             $('#location').val('');
-            $('#startTime').timepicker();
+            $('#startTime').timepicker(); 
+            var optn = document.createElement("OPTION");
+            optn.text = data._event.Title;
+            optn.value = data._event.ID;
+            document.getElementById("eventDropDown").options.add(optn);
         });
     }
