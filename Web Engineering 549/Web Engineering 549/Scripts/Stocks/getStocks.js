@@ -371,19 +371,19 @@ function sellStock(row) {
         window.location.href = "/Stocks/StockInfo";
     }
 
-   
-
-
-    function loadTopFiveStocks() {
+    function loadTopFiveStockRow(symbol, quantity) {
+        console.log("HI: " + symbol);
+        var url = "http://dev.markitondemand.com/Api/Quote/jsonp/";
         $.ajax({
-            url: '/Stocks/GetTopFiveStocks',
-            dataType: "json",
-            type: "post",
+            url: url,
+            async: false,
+            dataType: "jsonp",
+            data: {
+                symbol: symbol
+            },
             success: function (data) {
-                console.log(data);
-                for (var key in data) {
-                    $("#topStockBody").append("<tr><td>" + key + "</td><td>fillerprice</td><td>fillerchange</td><td>" + data[key] + "</td></tr>");
-                }
+                var row_id = "#" + symbol;
+                $(row_id).html("<td>" + symbol + "</td><td>" + data.Data.LastPrice + "</td><td>" + data.Data.ChangePercent + "</td><td>" + quantity + "</td>");
             }
         });
     }

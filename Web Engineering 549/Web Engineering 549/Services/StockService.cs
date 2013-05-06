@@ -51,7 +51,7 @@ namespace Web_Engineering_549.Services
             {
                 using (var context = new EntityContext())
                 {
-                   transactions = context.StockTransaction.Where(p => p.User_ID == userid).Select(p => p).ToList();
+                    transactions = context.StockTransaction.Where(p => p.User_ID == userid).Select(p => p).ToList();
                 }
             }
             catch (Exception ex)
@@ -92,8 +92,9 @@ namespace Web_Engineering_549.Services
                 {
                     transactions = context.StockTransaction.ToList();
                     var grouped = (from s in transactions
-                                  group s by s.Ticker_Symbol into g
-                                  select new { TickerSymbol = g.Key, TotalCount = g.Sum(s => s.Quantity) }).OrderByDescending(i => i.TotalCount).Take(5);
+                                   where s.User_ID == userid
+                                   group s by s.Ticker_Symbol into g
+                                   select new { TickerSymbol = g.Key, TotalCount = g.Sum(s => s.Quantity) }).OrderByDescending(i => i.TotalCount).Take(5);
                     foreach(var ele in grouped)
                     {
                         topFiveStocks.Add(ele.TickerSymbol, ele.TotalCount);
@@ -145,7 +146,7 @@ namespace Web_Engineering_549.Services
                         };
                         context.StockComment.Add(_comment);
                     }
-                    
+
                     context.SaveChanges();
                     return true;
 

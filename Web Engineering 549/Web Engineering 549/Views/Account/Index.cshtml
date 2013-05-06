@@ -53,9 +53,22 @@
                     </tr>
                 </thead>
                 <tbody id="topStockBody">
-                    <script type="text/javascript">
-                        loadTopFiveStocks();
-                    </script>
+                    @using Web_Engineering_549.Services
+                        @{
+                            StockService stockService = new StockService();
+                            AccountService accountService = new AccountService();
+                            HttpCookie cookie = Request.Cookies["SESSION_ID"];
+                            Dictionary<string, int> topFiveStocks = stockService.GetTopFiveStocks(accountService.getUserID(new Guid(cookie.Value)));
+
+                            JsonResult result = new JsonResult();
+                        }
+                    @foreach (KeyValuePair<string, int> entry in topFiveStocks)
+                    {
+                        <tr id="@entry.Key"><td>@entry.Key</td><td></td><td></td><td>@entry.Value</td></tr>
+                        <script type="text/javascript">
+                            loadTopFiveStockRow("@entry.Key" , "@entry.Value" );
+                        </script>
+                    }
                 </tbody>
             </table>
                 @using (Html.BeginForm("StockInfo", "Stocks", FormMethod.Get, new { @class = "form-search"}))
