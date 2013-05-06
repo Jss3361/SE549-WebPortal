@@ -20,7 +20,7 @@ namespace Web_Engineering_549.Services
                     context.CalendarEvent.Add(calendar_event);
                     context.SaveChanges();
                     var time = (calendar_event.start_date - new DateTime(1970, 1, 1).ToLocalTime()).TotalSeconds * 1000;
-                    return new CalendarEventViewModel(){Title = calendar_event.title, Date = time};
+                    return new CalendarEventViewModel(){Title = calendar_event.title, Date = time, ID = calendar_event.event_id};
                 }
             }
             catch (Exception ex)
@@ -41,7 +41,7 @@ namespace Web_Engineering_549.Services
                         p => p.user_id == userid && p.start_date >= start && p.start_date <= end);
                     foreach(var _event in events) 
                     {
-                        vms.Add(new CalendarEventViewModel() { Date = (_event.start_date - new DateTime(1970, 1, 1).ToLocalTime()).TotalSeconds * 1000, Title = _event.title });
+                        vms.Add(new CalendarEventViewModel() { Date = (_event.start_date - new DateTime(1970, 1, 1).ToLocalTime()).TotalSeconds * 1000, Title = _event.title, ID = _event.event_id });
                     }
 
                     return vms;
@@ -52,6 +52,25 @@ namespace Web_Engineering_549.Services
             {
                 return null;
             }
+        }
+
+        public void deleteEvent(int id, long user_id)
+        {
+            try
+            {
+                using (var context = new EntityContext())
+                {
+                    var eventToDelete = context.CalendarEvent.SingleOrDefault(i => i.event_id == id && i.user_id == user_id);
+                    context.CalendarEvent.Remove(eventToDelete);
+                    context.SaveChanges();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                
+            }
+
         }
 
     }

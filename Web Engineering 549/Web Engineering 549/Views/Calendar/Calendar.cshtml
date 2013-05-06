@@ -4,6 +4,8 @@
 <p>
     <a href="#addEventModal" role="button" class="btn btn-primary" data-toggle="modal">Create
         Event</a>
+        <a href="#deleteEventModal" role="button" class="btn btn-primary" data-toggle="modal">Delete
+        Event</a>
 </p>
 <link href="@Url.Content("~/CSS/fullcalendar.css")" rel="stylesheet" type="text/css" />
 <link href="@Url.Content("~/CSS/fullcalendar.print.css")" rel="stylesheet" type="text/css" />
@@ -49,3 +51,25 @@
         <input class="btn btn-primary" type="button" onclick="addEvent()" value="Create Event" />
     </div>
 </div>
+<div id="deleteEventModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+            ×</button>
+        <h3 id="myModalLabel">
+            Delete an Event</h3>
+    </div>
+    @using (Html.BeginForm("deleteEvent", "Calendar", FormMethod.Post))
+    {
+    <div class="modal-body">
+        <select id="eventDropDown" name="id">
+        </select>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <input class="btn btn-primary" type="submit" value="Delete Event" />
+    </div>
+    }
+</div>
+
+
