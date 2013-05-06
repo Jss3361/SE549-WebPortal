@@ -10,84 +10,91 @@ function getStockQuote() {
             symbol: symbol
         },
         success: function (data) {
-            console.log(data.Data);
+            if (typeof data.Data != "undefined") {
 
-            var result = "";
-            result += "<h3 id='stockName'>" + data.Data.Name + "</h3>";
-            result += "<p id=\"stockControls\"><input type=\"submit\" value=\"Buy Stock\" class=\"btn btn-primary\" id=\"buyStockButton\" onclick=\"buyStock()\"></p>";
+                var result = "";
+                result += "<h3 id='stockName'>" + data.Data.Name + "</h3>";
+                result += "<p id=\"stockControls\"><input type=\"submit\" value=\"Buy Stock\" class=\"btn btn-primary\" id=\"buyStockButton\" onclick=\"buyStock()\"></p>";
 
-            result += "<table class='table' id='queryTable'>";
-            result += "<tr><td>Symbol</td><td id='tickerSymbol'>" + data.Data.Symbol + "</td></tr>";
+                result += "<table class='table' id='queryTable'>";
+                result += "<tr><td>Symbol</td><td id='tickerSymbol'>" + data.Data.Symbol + "</td></tr>";
 
-            var change = data.Data.Change + "";
-            if (change.indexOf("-") == -1) {
-                result += "<tr><td>Change</td><td style='color:green'>" + parseFloat(data.Data.Change).toFixed(2) + "</td></tr>";
+                var change = data.Data.Change + "";
+                if (change.indexOf("-") == -1) {
+                    result += "<tr><td>Change</td><td style='color:green'>" + parseFloat(data.Data.Change).toFixed(2) + "</td></tr>";
+                }
+                else {
+                    result += "<tr><td>Change</td><td style='color:red'>" + parseFloat(data.Data.Change).toFixed(2) + "</td></tr>";
+                }
+                result += "<tr><td>Change Percent</td><td>" + parseFloat(data.Data.ChangePercent).toFixed(2) + "</td></tr>";
+                result += "<tr><td>Last Price</td><td id='currentPrice'>$" + parseFloat(data.Data.LastPrice).toFixed(2) + "</td></tr>";
+                result += "<tr><td>Open</td><td>$" + parseFloat(data.Data.Open).toFixed(2) + "</td></tr>";
+                result += "<tr><td>Days High</td><td>$" + parseFloat(data.Data.High).toFixed(2) + "</td></tr>";
+                result += "<tr><td>Days Low</td><td>$" + parseFloat(data.Data.Low).toFixed(2) + "</td></tr>";
+                result += "<tr><td>Volume</td><td>" + commaSeparateNumber(data.Data.Volume) + "</td></tr>";
+                result += "<tr><td>Market Cap YTD</td><td>" + commaSeparateNumber(data.Data.MarketCap) + "</td></tr>";
+
+                var stockName = data.Data.Name;
+
+                var chartUrl = "http://dev.markitondemand.com/Api/Timeseries/jsonp/";
+                $.ajax({
+                    url: chartUrl,
+                    dataType: "jsonp",
+                    data: {
+                        symbol: symbol,
+                        duration: 1096
+                    },
+                    success: function (data) {
+                        console.log(data);
+                        var preparedData = new Array();
+
+                        var first = new Array();
+                        first[0] = "x";
+                        first[1] = "Closing";
+
+                        preparedData[0] = first;
+
+
+                        for (i = 0; i < data.Data.SeriesDates.length; i++) {
+                            var item = new Array();
+
+                            item[0] = data.Data.SeriesDates[i];
+                            item[1] = parseFloat(data.Data.Series.close.values[i]);
+
+
+                            preparedData[i + 1] = item;
+                        }
+                        console.log(preparedData);
+
+                        // Create the chart
+                        var data = google.visualization.arrayToDataTable(preparedData);
+
+                        new google.visualization.LineChart(document.getElementById("chartDiv")).draw(
+                                data, {
+                                    curveType: "function",
+                                    height: 500,
+                                    title: stockName + ' - History for Past 3 Years'
+                                }
+                            );
+                    },
+                    error: function () {
+                        $("chartDiv").html("<h4 class='noChart'>No Chart Available for - " + stockName + "</h4>");
+                    }
+                });
+
+
+                $("#resultsDiv").html(result);
             }
             else {
-                result += "<tr><td>Change</td><td style='color:red'>" + parseFloat(data.Data.Change).toFixed(2) + "</td></tr>";
+                $("#resultsDiv").html("<h4 class='noResultMessage'>No Data Available for " + symbol + "</h4><a href='/Stocks/Stocks'><< Back</a>");
+                $("#chartDiv").html("");
+                $("#commentDiv").html("");
             }
-            result += "<tr><td>Change Percent</td><td>" + parseFloat(data.Data.ChangePercent).toFixed(2) + "</td></tr>";
-            result += "<tr><td>Last Price</td><td id='currentPrice'>$" + parseFloat(data.Data.LastPrice).toFixed(2) + "</td></tr>";
-            result += "<tr><td>Open</td><td>$" + parseFloat(data.Data.Open).toFixed(2) + "</td></tr>";
-            result += "<tr><td>Days High</td><td>$" + parseFloat(data.Data.High).toFixed(2) + "</td></tr>";
-            result += "<tr><td>Days Low</td><td>$" + parseFloat(data.Data.Low).toFixed(2) + "</td></tr>";
-            result += "<tr><td>Volume</td><td>" + commaSeparateNumber(data.Data.Volume) + "</td></tr>";
-            result += "<tr><td>Market Cap YTD</td><td>" + commaSeparateNumber(data.Data.MarketCap) + "</td></tr>";
-
-            var stockName = data.Data.Name;
-
-            var chartUrl = "http://dev.markitondemand.com/Api/Timeseries/jsonp/";
-            $.ajax({
-                url: chartUrl,
-                dataType: "jsonp",
-                data: {
-                    symbol: symbol,
-                    duration: 1096
-                },
-                success: function (data) {
-                    console.log(data);
-                    var preparedData = new Array();
-
-                    var first = new Array();
-                    first[0] = "x";
-                    first[1] = "Closing";
-
-                    preparedData[0] = first;
-
-
-                    for (i = 0; i < data.Data.SeriesDates.length; i++) {
-                        var item = new Array();
-
-                        item[0] = data.Data.SeriesDates[i];
-                        item[1] = parseFloat(data.Data.Series.close.values[i]);
-
-
-                        preparedData[i + 1] = item;
-                    }
-                    console.log(preparedData);
-
-                    // Create the chart
-                    var data = google.visualization.arrayToDataTable(preparedData);
-
-                    new google.visualization.LineChart(document.getElementById("chartDiv")).draw(
-                            data, {
-                                curveType: "function",
-                                height: 500,
-                                title: stockName + ' - History for Past 3 Years'
-                            }
-                        );
-                },
-                error: function () {
-                    $("chartDiv").html("<h4 class='noChart'>No Chart Available for - " + stockName + "</h4>");
-                }
-            });
-
-
-            $("#resultsDiv").html(result);
         },
-        error: function () {
-            $("chartDiv").html("<h4 class='noChart'>No Chart Available for - " + stockName + "</h4>");
-        }
+            error: function () {
+                $("chartDiv").html("<h4 class='noChart'>No Chart Available for - " + stockName + "</h4>");
+            }
+        
     });
 
 }

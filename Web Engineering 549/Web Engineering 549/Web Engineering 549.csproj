@@ -144,6 +144,7 @@
     <Content Include="CSS\bootstrap_table.min.css" />
     <Content Include="CSS\account.css" />
     <Content Include="CSS\datepicker.css" />
+    <Content Include="CSS\facebook.css" />
     <Content Include="CSS\fullcalendar.css" />
     <Content Include="CSS\fullcalendar.print.css" />
     <Content Include="CSS\jquery.ui.chatbox.css" />
