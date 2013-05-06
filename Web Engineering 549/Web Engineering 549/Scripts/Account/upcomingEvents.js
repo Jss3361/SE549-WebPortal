@@ -13,7 +13,6 @@
             end: startDate.getTime() + 86400000
         },
         success: function (data) {
-            console.log(data.events);
             data.events.sort(function (a, b) {
                 return a.Date > b.Date;
             });

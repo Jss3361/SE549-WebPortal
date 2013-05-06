@@ -382,7 +382,7 @@ function sellStock(row) {
             },
             success: function (data) {
                 var row_id = "#" + symbol;
-                $(row_id).html("<td>" + symbol + "</td><td>" + data.Data.LastPrice + "</td><td>" + data.Data.ChangePercent + "</td><td>" + quantity + "</td>");
+                $(row_id).html("<td>" + symbol + "</td><td>" + data.Data.LastPrice + "</td><td>" + data.Data.ChangePercent.toFixed(2) + "</td><td>" + quantity + "</td>");
             }
         });
     }
