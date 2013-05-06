@@ -154,6 +154,7 @@
     <Content Include="Scripts\Account\facebookLogin.js" />
     <Content Include="Scripts\Account\facebookLogout.js" />
     <Content Include="Scripts\Account\facebook.js" />
+    <Content Include="Scripts\Account\upcomingEvents.js" />
     <Content Include="Scripts\Account\stockSearch.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-fileupload.min.js" />

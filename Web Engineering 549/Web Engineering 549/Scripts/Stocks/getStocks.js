@@ -372,7 +372,6 @@ function sellStock(row) {
     }
 
     function loadTopFiveStockRow(symbol, quantity) {
-        console.log("HI: " + symbol);
         var url = "http://dev.markitondemand.com/Api/Quote/jsonp/";
         $.ajax({
             url: url,
