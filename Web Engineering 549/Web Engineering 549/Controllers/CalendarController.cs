@@ -58,5 +58,15 @@ namespace Web_Engineering_549.Controllers
             return Json(new { events }, JsonRequestBehavior.AllowGet);
         }
 
+        [Authenticate]
+        [HttpPost]
+        public ActionResult deleteEvent(int id)
+        {
+            calendarService.deleteEvent(id, accountservice.getUserID(base.GetSession()));
+
+            return RedirectToAction("Calendar");
+
+        }
+
     }
 }
