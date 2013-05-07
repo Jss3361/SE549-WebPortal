@@ -3,3 +3,22 @@
 width: 200px;
 }
 
+#messageBoard 
+{
+width:100%;
+}
+
+#messageBoardHeaderDiv 
+{
+margin-left:8px;
+margin-right:0px;
+margin-bottom:0px;
+margin-top:0px;
+}
+
+
+
+#messageBoardHeader
+{
+text-align:center;
+}
