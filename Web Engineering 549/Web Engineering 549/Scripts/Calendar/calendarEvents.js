@@ -16,6 +16,7 @@
                 success: function (data) {
                     var events = [];
                     var options = "";
+                    $('#eventDropDown').empty();
                     $.each(data.events, function () {
                         _this = this;
                         var optn = document.createElement("OPTION");
