@@ -73,5 +73,29 @@ namespace Web_Engineering_549.Services
 
         }
 
+        public List<CalendarEventViewModel> getTopEvents(long userid)
+        {
+            try
+            {
+                using (var context = new EntityContext())
+                {
+                    var vms = new List<CalendarEventViewModel>();
+                    var events = context.CalendarEvent.Where(
+                        p => p.user_id == userid && p.start_date >= DateTime.Now);
+                    foreach (var _event in events)
+                    {
+                        vms.Add(new CalendarEventViewModel() { DateTime = _event.start_date.AddHours(1).ToShortDateString() + " " + _event.start_date.AddHours(1).ToShortTimeString(), Title = _event.title, ID = _event.event_id });
+                    }
+
+                    return vms;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
     }
 }
