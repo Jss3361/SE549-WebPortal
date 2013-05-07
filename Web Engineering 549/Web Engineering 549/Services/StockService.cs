@@ -62,6 +62,28 @@ namespace Web_Engineering_549.Services
             return transactions;
         }
 
+        public bool ClearTransactionHistory(long userid)
+        {
+            List<StockTransaction> transactions = new List<StockTransaction>();
+            try
+            {
+                using (var context = new EntityContext())
+                {
+                    transactions = context.StockTransaction.Where(p => p.User_ID == userid).Select(p => p).ToList();
+                    foreach (StockTransaction trans in transactions)
+                    {
+                        context.StockTransaction.Remove(trans);
+                    }
+                    context.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
         public bool SaveComment(StockComment comment)
         {
             try

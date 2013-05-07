@@ -546,6 +546,16 @@ function sellOffStock(symbol, name, price, quantity) {
     });
 }
 
+function clearStockHistory() {
+    $.ajax({
+        url: '/Stocks/DeleteTransactionHistory',
+        type: "post",
+        success: function () {
+            loadStockTransactions();
+        }
+    });
+}
+
 function commaSeparateNumber(val) {
     while (/(\d+)(\d{3})/.test(val.toString())) {
         val = val.toString().replace(/(\d+)(\d{3})/, '$1' + ',' + '$2');

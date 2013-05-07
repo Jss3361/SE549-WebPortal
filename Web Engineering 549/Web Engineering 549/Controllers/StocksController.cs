@@ -188,5 +188,12 @@ namespace Web_Engineering_549.Controllers
             return new EmptyResult();
         }
 
+        [Authenticate]
+        public ActionResult DeleteTransactionHistory()
+        {
+            stockService.ClearTransactionHistory(accountService.getUserID(base.GetSession()));
+            return new EmptyResult();
+        }
+
     }
 }
