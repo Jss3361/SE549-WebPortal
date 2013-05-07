@@ -10,6 +10,7 @@ namespace Web_Engineering_549.ViewModels
     {
         public String Title { get; set; }
         public double Date { get; set; }
+        public string DateTime { get; set; }
         public int ID {get; set;}
     }
 }

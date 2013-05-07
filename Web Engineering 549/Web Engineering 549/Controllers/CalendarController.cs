@@ -59,6 +59,15 @@ namespace Web_Engineering_549.Controllers
         }
 
         [Authenticate]
+        [HttpGet]
+        public JsonResult GetTopEvents()
+        {
+            var events = calendarService.getTopEvents(
+                accountservice.getUserID(base.GetSession()));
+            return Json(new { events }, JsonRequestBehavior.AllowGet);
+        }
+
+        [Authenticate]
         [HttpPost]
         public ActionResult deleteEvent(int id)
         {
