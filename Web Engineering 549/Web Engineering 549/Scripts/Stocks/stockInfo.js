@@ -21,12 +21,12 @@ function getStockQuote() {
 
                 var change = data.Data.Change + "";
                 if (change.indexOf("-") == -1) {
-                    result += "<tr><td>Change</td><td style='color:green'>" + parseFloat(data.Data.Change).toFixed(2) + "</td></tr>";
+                    result += "<tr><td>Change</td><td style='color:green'>+" + parseFloat(data.Data.Change).toFixed(2) + "</td></tr>";
                 }
                 else {
-                    result += "<tr><td>Change</td><td style='color:red'>" + parseFloat(data.Data.Change).toFixed(2) + "</td></tr>";
+                    result += "<tr><td>Change</td><td style='color:red'>-" + parseFloat(data.Data.Change).toFixed(2) + "</td></tr>";
                 }
-                result += "<tr><td>Change Percent</td><td>" + parseFloat(data.Data.ChangePercent).toFixed(2) + "</td></tr>";
+                result += "<tr><td>Change Percent</td><td>" + parseFloat(data.Data.ChangePercent).toFixed(2) + "%</td></tr>";
                 result += "<tr><td>Last Price</td><td id='currentPrice'>$" + parseFloat(data.Data.LastPrice).toFixed(2) + "</td></tr>";
                 result += "<tr><td>Open</td><td>$" + parseFloat(data.Data.Open).toFixed(2) + "</td></tr>";
                 result += "<tr><td>Days High</td><td>$" + parseFloat(data.Data.High).toFixed(2) + "</td></tr>";
@@ -171,7 +171,7 @@ function buyStock(stock) {
                         document.getElementsByTagName("body")[0].removeChild(document.getElementById("stockTrans"));
                     }
                     else {
-                        alert("invalid quantity");
+                        alert("invalid quantity.  Must be a positive quantity that is less than a billion");
                     }
                 
 
@@ -189,7 +189,7 @@ function validateQuantity(quantity) {
     console.log("quantity = " + quantity);
     var pattern = /^\d+$/i;
 
-    if (quantity.length > 0 && parseInt(quantity) > 0 && quantity.match(pattern)) {
+    if (quantity.length > 0 && parseInt(quantity) > 0 && quantity.match(pattern) && parseInt(quantity) < 1000000000) {
         return true;
     }
     else {

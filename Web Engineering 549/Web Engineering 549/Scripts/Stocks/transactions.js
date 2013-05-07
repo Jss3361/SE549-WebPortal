@@ -8,7 +8,7 @@
                 displayTransactions(data);
             }
             else {
-                $("#stockTransactionsDiv").html("<h3 class='no-transactions-message'>No Transactions Currently Saved</h3>");
+                $("#stockTransactionsDiv").html("<table id='stockTransactionsTable' class='table'><tr><th style='text-align:center'>No Transactions Currently Saved</th></tr></table>");
             }
         }
     });
@@ -130,7 +130,8 @@ function loadMyStocks() {
                 getGainAndLoss(data);
             }
             else {
-                $("#stockTransactionsDiv").html("<h3 class='no-transactions-message'>No Stocks Currently Owned</h3>");
+                
+                $("#stockTransactionsDiv").html("<table id='stockTransactionsTable' class='table'><tr><th style='text-align:center'>No Stocks Currently Owned</th></tr></table>");
             }
         }
     });
@@ -422,7 +423,7 @@ function buyStock(stock) {
                     document.getElementsByTagName("body")[0].removeChild(document.getElementById("stockTrans"));
                 }
                 else {
-                    alert("Invalid Quantity. Please try again.");
+                    alert("Invalid Quantity.  Must be a positive value that is less than a billion. Please try again.");
                 }
 
 
@@ -440,7 +441,7 @@ function validateQuantity(quantity) {
     console.log("quantity = " + quantity);
     var pattern = /^\d+$/i;
 
-    if (quantity.length > 0 && parseInt(quantity) > 0 && quantity.match(pattern)) {
+    if (quantity.length > 0 && parseInt(quantity) > 0 && quantity.match(pattern) && parseInt(quantity) < 1000000000) {
         return true;
     }
     else {
