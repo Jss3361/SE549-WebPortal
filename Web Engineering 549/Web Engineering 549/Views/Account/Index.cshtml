@@ -67,7 +67,9 @@
                     {
                         <tr id="@entry.Key"><td>@entry.Key</td><td></td><td></td><td>@entry.Value</td></tr>
                         <script type="text/javascript">
-                            loadTopFiveStockRow("@entry.Key" , "@entry.Value" );
+                            $(document).ready(function () {
+                                loadTopFiveStockRow("@entry.Key", "@entry.Value");
+                            });
                         </script>
                     }
                 </tbody>
